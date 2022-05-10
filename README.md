@@ -190,6 +190,8 @@ import vectogebra.utilities as vut
 |  22.|  `vut.dict_to_vector(d)`                            | a vector object from a dictionary of components  |
 |  23.|  `vut.tuple_to_vector(t)`                           | a vector object from a tuple of components       |
 
+(more to come)
+
 ---
 
 Author: Mohammad Maasir
