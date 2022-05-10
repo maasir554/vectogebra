@@ -1,0 +1,22 @@
+# files from code editors
+
+.vscode
+.idea  
+
+
+# temporary cache files
+
+src/__pycache__
+src/vectogebra/__pycache__
+test/__pycache__
+
+# dist and build can be created by running $ python -m build
+dist
+build
+src/vectogebra.egg-info
+
+# NOTE: to publish the files on PyPI, submit only the dist directory
+# Everytime we decide to finalize the release, 
+# we should update the version in the setup.cfg file and setup.py file.
+# should update the dist directory
+# by running $ python -m build  
