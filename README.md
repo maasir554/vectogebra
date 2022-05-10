@@ -71,7 +71,7 @@ their sum will be given by :
 `s = a + b + ...`
 sum `s` will also be a vector object.
 
-### 2. Subctraction
+### 2. Subtraction
 
 Vectors can be subtracted using the minus (`-`) operator.
 
