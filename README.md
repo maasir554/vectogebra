@@ -16,45 +16,51 @@ this library was made by keeping its applications in Physics in mind (Mechanics,
 - physics friendly
 - Open for modifications
 
----
 
-Author: _Mohammad Maasir_
-
-License: _MIT_
-
-date-created: _8th of May, 2022_
-
----
 
 # 💥 Install
 
-`pip install vectogebra`
-
+```bash
+pip install --upgrade vectogebra
+```
 ### ⭐ Start by importing the vector class
 
-`import vectogebra.vector as vect`
-
+```python
+import vectogebra.vector as vect
+```
 _OR_
 
-`from vectogebra import vector as vect`
+```python
+from vectogebra import vector as vect
+```
 
 ### ⭐ Also import useful utility functions
 
-`import vectogebra.utitlies as vut`
+```python
+import vectogebra.utitlies as vut
+```
 
 _OR_
 
-`from vectogebra import utilities as vut`
+```python
+from vectogebra import utilities as vut
+```
 
----
 
 # 🔥 Description of the module
 
+this module currently have two components : one is `vectogebra.vector`, which is the vector class (boject) defination. it contains the basic functionality.
+the second component, `vectogebra.utilities` contains useful functions that are defined for the above mentioned vector class like, function to find angle between 
+two vectors, etc.
+
 ## Create a vector object :
 
-`v1 = vect(1,2,3)`
+```python
+import vectogebra.vector as vect
 
----
+v1 = vect(1,2,3)
+```
+
 
 ## 🔢 Algebric operations :
 
@@ -102,11 +108,9 @@ example :
 
 `p = v / 5` is same as "p equals v divided by 5".
 
----
 
 ## ❌✔️ Logical operations :
 
----
 
 ### 1. Equality
 
@@ -128,11 +132,9 @@ a >= b
 a <= b
 ```
 
----
 
 ## Attributes of the vector object
 
----
 
 ### Components
 
@@ -152,62 +154,65 @@ a <= b
 
 6. `v1.type` ==different from type(v1)==
 
----
 
 ## 🚀 Vectogebra's Utitlies (vut)
 
----
 
-### 1. `vut.angle(v1,v2)`
+1. `vut.angle(v1,v2)`
 
-### 2. `vut.dot(v1,v2)`
+2. `vut.dot(v1,v2)`
 
-### 3. `vut.cross(v1,v2)`
+3. `vut.cross(v1,v2)`
 
-### 4. `vut.magnitude(v1)`
+4. `vut.magnitude(v1)`
 
-### 5. `vut.unit(v1)`
+5. `vut.unit(v1)`
 
-### 6. `vut.is_perpendicular(v1,v2)`
+6. `vut.is_perpendicular(v1,v2)`
 
-### 7. `vut.is_parallel(v1,v2)`
+7. `vut.is_parallel(v1,v2)`
 
-### 8. `vut.scalar_component_parallel(v1,v2)`
+8. `vut.scalar_component_parallel(v1,v2)`
 
-### 9. `vut.scalar_component_perpendicular(v1,v2)`
+9. `vut.scalar_component_perpendicular(v1,v2)`
 
-### 10. `vut.vector_component_parallel(v1,v2)`
+10. `vut.vector_component_parallel(v1,v2)`
 
-### 11. `vut.vector_component_perpendicular(v1,v2)`
+11. `vut.vector_component_perpendicular(v1,v2)`
 
-### 12. `vut.unit_vector(v)` **OR** `vut.direction(v)` ==Returns the unit vector parallel to v==
+12. `vut.unit_vector(v)` **OR** `vut.direction(v)` ==Returns the unit vector parallel to v==
 
-### 13. `vut.dot(v1,v2)` ==dot product==
+13. `vut.dot(v1,v2)` ==dot product==
 
-### 14. `vut.cross(v1,v2)` ==cross product==
+14. `vut.cross(v1,v2)` ==cross product==
 
-### 15. `vut.parallelogram_area(v1,v2)` ==returns parallelogram area formed vy joining v1 and v2 tail to tail==
+15. `vut.parallelogram_area(v1,v2)` ==returns parallelogram area formed vy joining v1 and v2 tail to tail==
 
-### 16. `vut.box(a,b,c)` ==Box product==
+16. `vut.box(a,b,c)` ==Box product==
 
-### 17. `vut.collinear(a,b,c)` ==returns true if a,b,c are collinear==
+17. `vut.collinear(a,b,c)` ==returns true if a,b,c are collinear==
 
-### 18. `vut.vector_to_list(v)` ==returns a list of the components of v==
+18. `vut.vector_to_list(v)` ==returns a list of the components of v==
 
-### 19. `vut.vector_to_dict(v)` ==returns a dictionary of the components of v==
+19. `vut.vector_to_dict(v)` ==returns a dictionary of the components of v==
 
-### 20. `vut.vector_to_tuple(v)` ==returns a tuple of the components of v==
+20. `vut.vector_to_tuple(v)` ==returns a tuple of the components of v==
 
-### 21. `vut.list_to_vector(l)` ==returns a vector object from a list of components==
+21. `vut.list_to_vector(l)` ==returns a vector object from a list of components==
 
-### 22. `vut.dict_to_vector(d)` ==returns a vector object from a dictionary of components==
+22. `vut.dict_to_vector(d)` ==returns a vector object from a dictionary of components==
 
-### 23. `vut.tuple_to_vector(t)` ==returns a vector object from a tuple of components==
+23. `vut.tuple_to_vector(t)` ==returns a vector object from a tuple of components==
 
----
-
-### ❤️ vectorogebra is open source and free to use.
 
 ---
+
+Author: Mohammad Maasir
+
+License: MIT
+
+date-created: 8th of May, 2022
+
+----
 
 _Copyright (c) 2022 Mohammad Maasir_
