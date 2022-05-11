@@ -89,7 +89,7 @@ example :
 
 `p = a * b * c * d * ...` is same as "a dot b dot c dot ...".
 
-`p = 5*v` is same as "scalar 5 multiplied to vector v".
+`p = 5*v` OR `v*5` is same as "scalar 5 multiplied to vector v".
 
 ### 4. Cross product / vector multiplication
 
@@ -183,6 +183,7 @@ import vectogebra.utilities as vut
 |  15.|  `vut.parallelogram_area(v1,v2)`                    | parallelogram's area formed by joining v1 and v2 tail to tail    |
 |  16.|  `vut.box(a,b,c)`                                   | Box product or scalar triple product             
 |  17.|  `vut.collinear(a,b,c)`                             | returns True if a,b,c are collinear              |
+|⭐   | **Conversions**                                     |                                                  |
 |  18.|  `vut.vector_to_list(v)`                            | a list of the components of v                    |
 |  19.|  `vut.vector_to_dict(v)`                            | a dictionary of the components of v              |
 |  20.|  `vut.vector_to_tuple(v)`                           | a tuple of the components of v                   |
