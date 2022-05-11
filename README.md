@@ -157,7 +157,6 @@ important utility functions for the vector object.
 import vectogebra.utilities as vut
 ```
 
-<<<<<<< HEAD
 | S. no. | function                                       | Return value                                                  |
 | ------ | ---------------------------------------------- | ------------------------------------------------------------- |
 | 1.     | `vut.angle(v1,v2)`                             | angle between v1 and v                                        |
@@ -177,41 +176,13 @@ import vectogebra.utilities as vut
 | 15.    | `vut.parallelogram_area(v1,v2)`                | parallelogram's area formed by joining v1 and v2 tail to tail |
 | 16.    | `vut.box(a,b,c)`                               | Box product or scalar triple product                          |
 | 17.    | `vut.collinear(a,b,c)`                         | returns True if a,b,c are collinear                           |
+| ⭐     | **Conversions**                                |                                                               |
 | 18.    | `vut.vector_to_list(v)`                        | a list of the components of v                                 |
 | 19.    | `vut.vector_to_dict(v)`                        | a dictionary of the components of v                           |
 | 20.    | `vut.vector_to_tuple(v)`                       | a tuple of the components of v                                |
 | 21.    | `vut.list_to_vector(l)`                        | a vector object from a list of components                     |
 | 22.    | `vut.dict_to_vector(d)`                        | a vector object from a dictionary of components               |
 | 23.    | `vut.tuple_to_vector(t)`                       | a vector object from a tuple of components                    |
-=======
-
-|S. no.| function |Return value
-|------|----------|-----------|
-|  1. | `vut.angle(v1,v2)`                                  |  angle between v1 and v                               |     
-|  2. | `vut.dot(v1,v2)`                                    |  dot product (or scalar product) of vectors v1 and v2 | 
-|  3. | `vut.cross(v1,v2)`                                  |  cross product (or vector product) of v1 and v2       |
-|  4. | `vut.magnitude(v1)`                                 |  magnitude of v1 and v2         |
-|  5. | `vut.unit(v1)`                                      |  unit in direction of v1        |
-|  6. | `vut.is_perpendicular(v1,v2)`                       | True when v1 is perpendicular to v2 else it returns False |
-|  7. | `vut.is_parallel(v1,v2)`                            | True whe v1 is parallel to ve else False    |
-|  8. | `vut.scalar_component_parallel(v1,v2)`              | Magnitude of component of v1 parallel to v2 |
-|  9. | `vut.scalar_component_perpendicular(v1,v2)`         | Magnitude of  vi perpendicular to v2        |
-|  10.|  `vut.vector_component_parallel(v1,v2)`             | Vector component of v1 parallel to v2       |
-|  11.|  `vut.vector_component_perpendicular(v1,v2)`        |  Vector compoment of v1 perpendicular to v2 |
-|  12.|  `vut.unit_vector(v)` **OR** `vut.direction(v)`     | Returns the unit vector parallel to v     |
-|  13.|  `vut.dot(v1,v2)`                                   | dot product                               |      
-|  14.|  `vut.cross(v1,v2)`                                 | cross product                             |
-|  15.|  `vut.parallelogram_area(v1,v2)`                    | parallelogram's area formed by joining v1 and v2 tail to tail    |
-|  16.|  `vut.box(a,b,c)`                                   | Box product or scalar triple product             
-|  17.|  `vut.collinear(a,b,c)`                             | returns True if a,b,c are collinear              |
-|⭐   | **Conversions**                                     |                                                  |
-|  18.|  `vut.vector_to_list(v)`                            | a list of the components of v                    |
-|  19.|  `vut.vector_to_dict(v)`                            | a dictionary of the components of v              |
-|  20.|  `vut.vector_to_tuple(v)`                           | a tuple of the components of v                   |
-|  21.|  `vut.list_to_vector(l)`                            | a vector object from a list of components        |
-|  22.|  `vut.dict_to_vector(d)`                            | a vector object from a dictionary of components  |
-|  23.|  `vut.tuple_to_vector(t)`                           | a vector object from a tuple of components       |
->>>>>>> 22bd6ad25bd3fb693afb9a148c30f4f4e5e7259f
 
 (more to come)
 
