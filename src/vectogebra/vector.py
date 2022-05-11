@@ -43,7 +43,7 @@ class vector:
     
     #Constructor
     # may us *args and *kwargs method later but as of now i dont have time
-    #it is a WAT better method!
+    #it is a WAY better method in some cases.!
     
     def __init__(self, i=0, j=0, k=0):      # component will take value 0 if not specified. 
         #Rectangular Components in i,j,k
