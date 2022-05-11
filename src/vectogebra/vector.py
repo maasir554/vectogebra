@@ -42,7 +42,7 @@ class vector:
     
     #Constructor
 
-    def __init__(self, i, j, k):
+    def __init__(self, i=0, j=0, k=0):      # component will take value 0 if not specified. 
         #Rectangular Components in i,j,k
         self.i = i
         self.j = j
