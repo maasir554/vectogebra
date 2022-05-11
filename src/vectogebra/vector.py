@@ -35,16 +35,19 @@
     email: maasir554@gmail.com
 
 """
+from ast import arg
 import math
 
 
 class vector:
     
     #Constructor
-
+    # may us *args and *kwargs method later but as of now i dont have time
+    #it is a WAT better method!
+    
     def __init__(self, i=0, j=0, k=0):      # component will take value 0 if not specified. 
         #Rectangular Components in i,j,k
-        if type(i) == int or type(i) == float:
+        if (type(i) == int or type(i) == float) and (type(j) == int or type(j) == float) and (type(k) == int or type(k) == float):
             self.i = i
             self.j = j
             self.k = k
