@@ -44,13 +44,37 @@ class vector:
 
     def __init__(self, i=0, j=0, k=0):      # component will take value 0 if not specified. 
         #Rectangular Components in i,j,k
-        self.i = i
-        self.j = j
-        self.k = k
+        if type(i) == int or type(i) == float:
+            self.i = i
+            self.j = j
+            self.k = k
+        elif type(i) == list:
+            self.i = i[0]
+            self.j = i[1]
+            self.k = i[2]
+        elif type(i) == tuple:
+            self.i = i[0]
+            self.j = i[1]
+            self.k = i[2]
+        elif type(i) == dict :
+            if 'i' in i and 'j' in i and 'k' in i:
+                self.i = i['i']
+                self.j = i['j']
+                self.k = i['k']
+            elif 'x' in i and 'y' in i and 'z' in i:
+                self.i = i['x']
+                self.j = i['y']
+                self.k = i['z']
+            else:
+                raise ValueError("Invalid input")
+
+
+
+        
         #Rectangular Components in x,y,z
-        self.x = i
-        self.y = j
-        self.z = k
+        self.x = self.i
+        self.y = self.j
+        self.z = self.k
         #Magnitude
         self.magnitude = self.__magnitude()  #refer to __magnitude() below
         self.modulus = self.magnitude
