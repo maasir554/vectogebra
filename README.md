@@ -132,9 +132,9 @@ a <= b
 
 ### Components
 
-1. `v1.x` **OR** `vi.i`
-2. `v1.y` **OR** `vi.j`
-3. `v1.z` **OR** `vi.k`
+1. `v1.x` **OR** `v1.i`
+2. `v1.y` **OR** `v2.j`
+3. `v1.z` **OR** `v3.k`
 
 ### Magnitude
 
