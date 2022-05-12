@@ -132,9 +132,11 @@ a <= b
 
 ### Components
 
+for a vector v1,
+
 1. `v1.x` **OR** `v1.i`
-2. `v1.y` **OR** `v2.j`
-3. `v1.z` **OR** `v3.k`
+2. `v1.y` **OR** `v1.j`
+3. `v1.z` **OR** `v1.k`
 
 ### Magnitude
 
@@ -163,16 +165,16 @@ import vectogebra.utilities as vut
 | 2.     | `vut.dot(v1,v2)`                               | dot product (or scalar product) of vectors v1 and v2          |
 | 3.     | `vut.cross(v1,v2)`                             | cross product (or vector product) of v1 and v2                |
 | 4.     | `vut.magnitude(v1)`                            | magnitude of v1 and v2                                        |
-| 5.     | `vut.unit(v1)`                                 | **Unit vector** in direction of v1                                  |
-| 6.     | `vut.is_perpendicular(v1,v2)`                  | True when v1 is **perpendicular** to v2 else it returns False     |
+| 5.     | `vut.unit(v1)`                                 | **Unit vector** in direction of v1                            |
+| 6.     | `vut.is_perpendicular(v1,v2)`                  | True when v1 is **perpendicular** to v2 else it returns False |
 | 7.     | `vut.is_parallel(v1,v2)`                       | True whe v1 is parallel to ve else False                      |
-| 8.     | `vut.scalar_component_parallel(v1,v2)`         | *Magnitude* of **component** of v1 **parallel** to v2                   |
-| 9.     | `vut.scalar_component_perpendicular(v1,v2)`    | *Magnitude* of **component** of v1 **perpendicular** to v2     |
-| 10.    | `vut.vector_component_parallel(v1,v2)`         | *Vector* **component** of v1 **parallel** to v2                |
-| 11.    | `vut.vector_component_perpendicular(v1,v2)`    | *Vector* compoment of v1 perpendicular to v2                    |
+| 8.     | `vut.scalar_component_parallel(v1,v2)`         | _Magnitude_ of **component** of v1 **parallel** to v2         |
+| 9.     | `vut.scalar_component_perpendicular(v1,v2)`    | _Magnitude_ of **component** of v1 **perpendicular** to v2    |
+| 10.    | `vut.vector_component_parallel(v1,v2)`         | _Vector_ **component** of v1 **parallel** to v2               |
+| 11.    | `vut.vector_component_perpendicular(v1,v2)`    | _Vector_ compoment of v1 perpendicular to v2                  |
 | 12.    | `vut.unit_vector(v)` **OR** `vut.direction(v)` | Returns the **unit vector** parallel to v                     |
-| 13.    | `vut.dot(v1,v2)`                               | **dot** product                                                   |
-| 14.    | `vut.cross(v1,v2)`                             | **cross** product                                                 |
+| 13.    | `vut.dot(v1,v2)`                               | **dot** product                                               |
+| 14.    | `vut.cross(v1,v2)`                             | **cross** product                                             |
 | 15.    | `vut.parallelogram_area(v1,v2)`                | parallelogram's area formed by joining v1 and v2 tail to tail |
 | 16.    | `vut.box(a,b,c)`                               | Box product or scalar triple product                          |
 | 17.    | `vut.collinear(a,b,c)`                         | returns True if a,b,c are collinear                           |
