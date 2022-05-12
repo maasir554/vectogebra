@@ -237,6 +237,14 @@ class vector:
     ########### More Dunder methods / Magic methods to be added #############
 
 
+    # Unary operatow overloading :-
+    # NOTE : + is the unary plus operator in this case
+    def __pos__(self):
+        return self
+    # NOTE : - is the unary minus operator in this case
+    def __neg__(self):
+        return vector(-self.i, -self.j, -self.k)
+
 
 
 # i will write i cap as i_
