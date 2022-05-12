@@ -286,6 +286,17 @@ def tuple_to_vector(t):
 # 2d vector from polar coordinates
 
 
-def polar_to_vector(r, theta):
-    return v(r * math.cos(theta), r * math.sin(theta), 0)
+def polar_to_vector(r, theta, atype="rad"):
+    if atype == "rad" or atype == "radians" and theta != math.pi/2 :
+        return v(r * math.cos(theta), r * math.sin(theta), 0)
+    elif atype == "deg" or atype == "degrees" and theta != 90 :
+        return v(r * math.cos(math.radians(theta)), r * math.sin(math.radians(theta)), 0)
+    if atype == "rad" or atype == "radians" and theta == math.pi/2 :
+        return v(0,r, 0)
+    elif atype == "deg" or atype == "degrees" and theta == 90 :
+        return v(0,r, 0)
+    else:
+        raise ValueError("Third argument must be either 'radians' or 'rad' or 'degrees' or 'deg'")
 
+
+print(polar_to_vector(1, 0, 'degrees'))
