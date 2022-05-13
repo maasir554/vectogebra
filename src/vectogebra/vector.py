@@ -35,8 +35,9 @@
     email: maasir554@gmail.com
 
 """
-from ast import arg
+
 import math
+from turtle import degrees
 
 
 class vector:
@@ -91,9 +92,20 @@ class vector:
         #Unit Vector [Tuple] along the vector (parallel)
         # NOTE !WARNING! the unit_vector function returns a TUPLE (x,y,z) and NOT a vector
         self.unit_vector = (self.__unit_vector())
-
+        self.direction = self.unit_vector
 
         self.type = self.__type__()
+
+        #angle made by vector with the coordinate axes x,y and z respectively :
+        self.angle_x = math.acos(self.i/self.magnitude)
+        self.angle_y = math.acos(self.j/self.magnitude)
+        self.angle_z = math.acos(self.k/self.magnitude)
+        # degrees:
+        self.angle_x_deg = self.angle_x * 180 / math.pi
+        self.angle_y_deg = self.angle_y * 180 / math.pi
+        self.angle_z_deg = self.angle_z * 180 / math.pi
+        
+        
 
     #String representation of the vector object :
 
@@ -137,7 +149,7 @@ class vector:
     # function to return unit_vector in different (string) formats 
     def unit_vector(self, format="default"):
         if format == "csv" or format == "tuple" or format == "default":
-            return(self.unit_vector)
+            return(self.__unit_vector)
         elif format == "componential" or format =="components" or format == "comp":
             return("({}i + {}j + {}k)".format(self.x, self.y, self.z))
 
@@ -237,7 +249,7 @@ class vector:
     ########### More Dunder methods / Magic methods to be added #############
 
 
-    # Unary operatow overloading :-
+    # Unary operator overloading :-
     # NOTE : + is the unary plus operator in this case
     def __pos__(self):
         return self
