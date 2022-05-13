@@ -95,6 +95,16 @@ class TestStringMethods(unittest.TestCase):
     def test_scalar_division(self):
         self.assertEqual(v1/2, vect(0.5,1,1.5))
 
+    def test_unary_operators(self):
+        self.assertEqual(-v1, vect(-1,-2,-3))
+        self.assertEqual(-v2,vect(-4,-5,-6))
+        self.assertEqual(-v3,vect(-2,-2,-2))
+        #for + uunary operator
+        self.assertEqual(+v1, vect(1,2,3))
+        self.assertEqual(+v2,vect(4,5,6))
+        self.assertEqual(+vect(-1,5,-56),vect(-1,5,-56))
+
+
 
 if __name__ == '__main__':
     unittest.main()

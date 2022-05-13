@@ -49,6 +49,8 @@ sys.path.append(str(rootDIR))
 
 import unittest
 
+import math
+
 from src.vectogebra.vector import vector as vect
 #from vector import vector as vect 
 #do NOT delete the above comment.
@@ -56,6 +58,7 @@ from src.vectogebra.vector import vector as vect
 v1 = vect(1,2,3)
 v2 = vect(4,5,6)
 v3 = vect(2,2,2)
+v4 = vect(1/math.sqrt(3),1/math.sqrt(3),1/math.sqrt(3))
 
 class TestStringMethods(unittest.TestCase):
 
@@ -71,6 +74,7 @@ class TestStringMethods(unittest.TestCase):
 
     def test_magnitude(self):
         self.assertEqual(v1.magnitude, 3.7416573867739413)
+        self.assertEqual(v4.magnitude, 1) 
     
     def test_magnitude_squared(self):
         self.assertEqual(v1.magnitude_squared,14)

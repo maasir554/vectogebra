@@ -87,6 +87,25 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(vut.angle(v3,v4), 0)
         self.assertEqual(vut.angle(vect(1,0,0),vect(0,1,0)), math.pi/2)
 
+    # polar vector tests.
+    def test_polar_to_vector_function(self):
+        self.assertEqual(vut.polar_to_vector(1,0), vect(1,0,0))
+        self.assertEqual(vut.polar_to_vector(1,math.pi/2), vect(0,1,0))
+        self.assertEqual(vut.polar_to_vector(1,math.pi), vect(-1,0,0))
+        self.assertEqual(vut.polar_to_vector(1,3*math.pi/2), vect(0,-1,0))
+        self.assertEqual(vut.polar_to_vector(1,2*math.pi), vect(1,0,0))
+        self.assertEqual(vut.polar_to_vector(1,math.pi/4), vect(math.cos(math.pi/4), math.sin(math.pi/4),0))
+        self.assertEqual(vut.polar_to_vector(1,3*math.pi/4), vect(math.cos(3*math.pi/4), math.sin(3*math.pi/4),0))
+        self.assertEqual(vut.polar_to_vector(1,0), vect(1,0))
+        #degrees
+        self.assertEqual(vut.polar_to_vector(1,45,'deg'), vect(math.cos(math.pi/4), math.sin(math.pi/4),0))
+        self.assertEqual(vut.polar_to_vector(1,90,'deg'), vect(0,1,0))
+        self.assertEqual(vut.polar_to_vector(1,180,'deg'), vect(-1,0,0))
+        self.assertEqual(vut.polar_to_vector(1,270,'deg'), vect(0,-1,0))
+        self.assertEqual(vut.polar_to_vector(1,360,'deg'), vect(1,0,0))
+        self.assertEqual(vut.polar_to_vector(1,60,'deg'), vect(math.cos(math.pi/3), math.sin(math.pi/3),0))
+        self.assertEqual(vut.polar_to_vector(1,120,'deg'), vect(math.cos(2*math.pi/3), math.sin(2*math.pi/3),0))
+        self.assertEqual(vut.polar_to_vector(1,0,'deg'), vect(1,0))
 
 
 if __name__ == '__main__':
