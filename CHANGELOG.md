@@ -39,4 +39,4 @@ record of major changes to the project including bug fixes will be stored here.
   - plane can be 'xy' or 'yz' or 'zx'
   - atype can be 'deg' or 'degree' or 'rad' or 'radian' default is 'rad'.
   - default plane is 'xy', and default atype is 'deg' in this case.
-  - angle willed be measured from the +ve x axis.
+  - angle will be measured from the +ve x- axis in case of xy and yz plane, and with +ve y- axis in the case of yz plane.
