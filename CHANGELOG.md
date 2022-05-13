@@ -14,15 +14,29 @@ record of major changes to the project including bug fixes will be stored here.
 
 ### updates in vector class
 
-- 2D vector can now be defined by passing two arguments and third woll automatically be set to 0.
-- vector() can now accept single argument as a list / dict or tuple of x, y, and z components.
+- 2D vector can now be defined by passing two arguments and third will automatically be set to 0.
+- `vector()` can now accept single argument as a list / dict or tuple of x, y, and z components.
+- ### new attributes:
+  1. `vector.angle_x` - angle between vector and x axis.
+  2. `vector.angle_y` - angle between vector and y axis.
+  3. `vctor.angle_z` - angle between vector and z axis.
+     (radians)
 
 ### updates in vut
 
 - polar vectors are now supported.
   to define a vector using polar argument, use vut.polar_to_vector(r, theta, atype)
-  atype can be 'deg' / 'degree' or 'rad' / 'radian' default is 'deg'. example:
+  atype can be 'deg' or 'degree' or 'rad' or 'radian' default is 'rad'. example:
   ```python
     >>> vut.polar_to_vector(1, 90, 'deg')
     >>> vut.polar_to_vector(1, math.pi/2, 'rad')
   ```
+- polar exportes added
+  vector can be exported to a polar representation by using the following functions:
+  ```python
+     vut.polar_to_vector(vector, plane, atype)
+  ```
+  - plane can be 'xy' or 'yz' or 'zx'
+  - atype can be 'deg' or 'degree' or 'rad' or 'radian' default is 'rad'.
+  - default plane is 'xy', and default atype is 'deg' in this case.
+  - angle willed be measured from the +ve x axis.
