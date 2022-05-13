@@ -287,16 +287,28 @@ def tuple_to_vector(t):
 
 
 def polar_to_vector(r, theta, atype="rad"):
-    if atype == "rad" or atype == "radians" and theta != math.pi/2 :
-        return v(r * math.cos(theta), r * math.sin(theta), 0)
-    elif atype == "deg" or atype == "degrees" and theta != 90 :
-        return v(r * math.cos(math.radians(theta)), r * math.sin(math.radians(theta)), 0)
-    if atype == "rad" or atype == "radians" and theta == math.pi/2 :
-        return v(0,r, 0)
-    elif atype == "deg" or atype == "degrees" and theta == 90 :
-        return v(0,r, 0)
+    if atype == "rad" or atype == "radians" or atype == "radian"  :                    
+        if round(math.cos(theta),10) != 0.0 and round(math.sin(theta),10) != 0.0:
+            return v(round(r*math.cos(theta),10), round(r*math.sin(theta),10))
+        elif round(math.cos(theta),10) ==0.0:
+            return v(0, r*math.sin(theta))
+        elif round(math.sin(theta),10) ==0.0:
+            return v(r*math.cos(theta), 0)
+        
+    elif atype == "deg" or atype == "degrees" or atype == "degree"  :
+        phi = math.radians(theta)
+        if round(math.cos(phi),10) != 0.0 and round(math.sin(phi),10) != 0.0:
+            return v(round(r*math.cos(phi),10), round(r*math.sin(phi),10))
+        elif round(math.cos(phi),10) ==0.0:
+            return v(0, r*math.sin(phi))
+        elif round(math.sin(phi),10) ==0.0:
+            return v(r*math.cos(phi), 0)
+          
     else:
-        raise ValueError("Third argument must be either 'radians' or 'rad' or 'degrees' or 'deg'")
+        raise ValueError("Third argument must be either 'radians' or 'radian' or 'rad' or 'degrees' or 'degree' or 'deg'")
 
 
-print(polar_to_vector(1, 0, 'degrees'))
+# print(polar_to_vector(1, 2*math.pi/2))
+# print(polar_to_vector(1,3*math.pi/2))
+# print(polar_to_vector(1,4*math.pi/2))
+# print(polar_to_vector(1,5*math.pi/2))
