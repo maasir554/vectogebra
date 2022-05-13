@@ -246,6 +246,21 @@ def vector_to_list(v):
 def vector_to_tuple(v):
     return v.x, v.y, v.z
 
+def vector_to_polar(v, plane="xy", atype="deg"):
+    if plane == "xy" and atype == "deg" or atype == "degree": 
+        return (v.magnitude, v.angle_x_deg)
+    elif plane == "xy" and atype == "rad" or atype == "radian":
+        return (v.magnitude, v.angle_x)
+    elif plane == "xz" and atype == 'rad'or atype == 'radian':
+        return (v.magnitude, v.angle_degrees_x)
+    elif plane == "xz" and atype == 'deg'or atype == 'degree':
+        return (v.magnitude, v.angle_x_deg)
+    elif plane == "yz" and atype == 'rad'or atype == 'radian':
+        return (v.magnitude, v.angle_degrees_y)
+    elif plane == "yz" and atype == 'deg'or atype == 'degree':
+        return (v.magnitude, v.angle_y_deg)
+    else:
+        raise ValueError("plane must be either 'xy', 'xz' or 'yz'")
 
 ###########################################################
 
@@ -289,7 +304,7 @@ def tuple_to_vector(t):
 def polar_to_vector(r, theta, atype="rad"):
     if atype == "rad" or atype == "radians" or atype == "radian"  :                    
         if round(math.cos(theta),10) != 0.0 and round(math.sin(theta),10) != 0.0:
-            return v(round(r*math.cos(theta),10), round(r*math.sin(theta),10))
+            return v(r*math.cos(theta), r*math.sin(theta))
         elif round(math.cos(theta),10) ==0.0:
             return v(0, r*math.sin(theta))
         elif round(math.sin(theta),10) ==0.0:
@@ -298,7 +313,7 @@ def polar_to_vector(r, theta, atype="rad"):
     elif atype == "deg" or atype == "degrees" or atype == "degree"  :
         phi = math.radians(theta)
         if round(math.cos(phi),10) != 0.0 and round(math.sin(phi),10) != 0.0:
-            return v(round(r*math.cos(phi),10), round(r*math.sin(phi),10))
+            return v(r*math.cos(phi), r*math.sin(phi))
         elif round(math.cos(phi),10) ==0.0:
             return v(0, r*math.sin(phi))
         elif round(math.sin(phi),10) ==0.0:
