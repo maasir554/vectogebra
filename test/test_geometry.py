@@ -22,6 +22,7 @@ a = vect(1,3,5)
 b = vect(3,5,7)
 c = vect(0,4)
 d = vect(3,0)
+o = vect(0,0)
 
 class TestStringMethods(unittest.TestCase):
     def test_section(self):
@@ -38,6 +39,15 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(geo.area_triangle(c,b,a), 2.0)
         self.assertEqual(geo.area_triangle(b,c,a), 2.0)
         self.assertEqual(geo.area_triangle(a,c,b), 2.0)
+
+
+    def test_area_line(self):
+        self.assertEqual(geo.area_line(c,d), 6)
+        self.assertEqual(geo.area_line(d,c), -6)
+
+    def test_area_polygon(self):
+        self.assertEqual(geo.area_polygon(*[o,c,d]),6)
+        self.assertEqual(geo.area_polygon(o,c,d),6)
 
 
 if __name__ == '__main__':

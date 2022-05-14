@@ -31,7 +31,7 @@ def area_triangle(a,b,c):
 # negative area is allowed in case of vectors
 def area_line(a,b):
     """ 
-    area_line(a,b)
+    ### area_line(a,b)
     - a and b : position vectors
     - returns signed area under the line segment joining a and b falling on x axis 
     - if b.x > a.x then area will be +ve
@@ -46,8 +46,8 @@ def area_line(a,b):
 def area_polygon(*args):
     
     """
-    area_polygon(*args)
-    ---
+    ### area_polygon(*args)
+    
     - args : position vectors of all the vertices in a clockwise manner
 
     - returns : signed area under the polygon formed by the vertices
@@ -55,6 +55,11 @@ def area_polygon(*args):
 
     - if arguments are given in anti-clockwise manner, then area will be equal
     to negative of the area of the polygon formed by the vertices
+
+    - if you have a list of arguments, you can pass them as:
+        list1 = [v1 ,v2 ,v3, ...]
+        area_polygon(*list1)
+
 
     """
 
@@ -68,11 +73,5 @@ def area_polygon(*args):
     
     for idx in range(0,l-1,1):
         TotalArea += area_line(args[idx],args[idx+1])
-        print(TotalArea)
     return TotalArea
 
-a = vect(0,0)
-b = vect(0,2)
-c = vect(2,0)
-ap = area_polygon(a,b,c)
-print(ap)
