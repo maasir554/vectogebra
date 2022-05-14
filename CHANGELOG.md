@@ -40,3 +40,17 @@ record of major changes to the project including bug fixes will be stored here.
   - atype can be 'deg' or 'degree' or 'rad' or 'radian' default is 'rad'.
   - default plane is 'xy', and default atype is 'deg' in this case.
   - angle will be measured from the +ve x- axis in case of xy and yz plane, and with +ve y- axis in the case of yz plane.
+
+### new module for geometry
+
+this module contains functions for coordinate geometry calculations using vectors.
+this module is an application of vector.py and utilities.py
+
+```python
+import vectogebra.geometry as geo
+```
+
+- `divider(a,b,m,n)`defined :
+  returns a point that divides the line segment joining a and b by in the ratio m, n.
+- `distance(a,b)` function defined:
+  returns the distance between a and b.
