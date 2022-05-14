@@ -97,9 +97,16 @@ class vector:
         self.type = self.__type__()
 
         #angle made by vector with the coordinate axes x,y and z respectively :
-        self.angle_x = math.acos(self.i/self.magnitude)
-        self.angle_y = math.acos(self.j/self.magnitude)
-        self.angle_z = math.acos(self.k/self.magnitude)
+        if self.magnitude != 0:    
+            self.angle_x = math.acos(self.i/self.magnitude)
+            
+            self.angle_y = math.acos(self.j/self.magnitude)
+            
+            self.angle_z = math.acos(self.k/self.magnitude)
+        else:
+            self.angle_x = 0
+            self.angle_y = 0
+            self.angle_z = 0
         # degrees:
         self.angle_x_deg = self.angle_x * 180 / math.pi
         self.angle_y_deg = self.angle_y * 180 / math.pi
