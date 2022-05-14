@@ -43,14 +43,15 @@ record of major changes to the project including bug fixes will be stored here.
 
 ### new module for geometry
 
-this module contains functions for coordinate geometry calculations using vectors.
+this module contains functions for coordinate geometry calculations using vectors (Position Vectors).
 this module is an application of vector.py and utilities.py
 
 ```python
 import vectogebra.geometry as geo
 ```
-
-- `divider(a,b,m,n)`defined :
-  returns a point that divides the line segment joining a and b by in the ratio m, n.
-- `distance(a,b)` function defined:
-  returns the distance between a and b.
+defined the following functions :-
+1. `divider(a,b,m,n)` : returns a point that divides the line segment joining `a` and `b` by in the ratio `m`:`n`.
+2. `distance(a,b)` : returns the distance between `a` and `b`
+3. `area_line(a,b)` : signed area under the line segment joining a and b.
+4. `area_polygon` : signed area fo polygon with any number of vertices. 
+5. `area_triangle` : area formed by a triangle with vertices `a` , `b` and `c`.
