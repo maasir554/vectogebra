@@ -28,7 +28,16 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(geo.divider(a,b,1,1), vect(2,4,6))
 
     def test_distance(self):
-        self.assertEqual(geo.distance(c,d), 5.0)     
+        self.assertEqual(geo.distance(c,d), 5.0) 
+
+    def test_area_triangle(self):
+        a = vect(0,2)
+        b = vect(2,0)
+        c = vect(0,0)
+        self.assertEqual(geo.area_triangle(a,b,c), 2.0) 
+        self.assertEqual(geo.area_triangle(c,b,a), 2.0)
+        self.assertEqual(geo.area_triangle(b,c,a), 2.0)
+        self.assertEqual(geo.area_triangle(a,c,b), 2.0)
 
 
 if __name__ == '__main__':
