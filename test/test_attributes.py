@@ -83,7 +83,12 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(v1.unit_vector, vect(0.2672612419124244,0.5345224838248488,0.8017837257372732))
     
     
-    
+    def test_string_vector(self):
+        a = '1 2 3'
+        b = '4 5 6'
+        self.assertEqual(vect(a), vect(1,2,3))
+        self.assertEqual(vect(b), vect(4,5,6))
+        self.assertEqual(vect(a)-vect(b), vect(-3,-3,-3))
 
 
     # def test_subctraction(self):

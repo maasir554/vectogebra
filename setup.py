@@ -2,6 +2,7 @@
 # every time you want to compile(build/ditributre)
 # change the version 
 # and run $ python -m build
+# to upload : twine upload dist/*
 import setuptools
 
 with open("README.md", "r", encoding="utf-8") as fh:

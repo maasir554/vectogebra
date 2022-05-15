@@ -46,7 +46,7 @@ def area_line(a,b):
 def area_polygon(*args):
     
     """
-    ### area_polygon(*args)
+    ### area_polygon(*args) - 2D only.
     
     - args : position vectors of all the vertices in a clockwise manner
 
