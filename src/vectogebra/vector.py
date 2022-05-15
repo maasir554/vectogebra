@@ -71,6 +71,14 @@ class vector:
                 self.k = i['z']
             else:
                 raise ValueError("Invalid input")
+        elif type(i) == str:
+            lst = i.split(' ')
+            if len(lst) == 3:
+                    self.i = float(lst[0])
+                    self.j = float(lst[1])
+                    self.k = float(lst[2])
+            else:
+                raise ValueError("Invalid input")
 
 
 
@@ -172,7 +180,7 @@ class vector:
             return(self.i * other.i + self.j * other.j + self.k * other.k)
         else:
             return("Error: Invalid input")
-    #if salar number is wrir=tten in the beging, we uses __rmul__ overloader [Magic Method]
+    # if scalar number is wrritten in the beging, we uses __rmul__ overloader [Magic Method]
     def __rmul__(self, other):
         if type(other) == int or type(other) == float:
             return(vector(self.i * other, self.j * other, self.k * other))
@@ -267,3 +275,4 @@ class vector:
 
 
 # i will write i cap as i_
+
