@@ -20,7 +20,9 @@ record of major changes to the project including bug fixes will be stored here.
   1. `vector.angle_x` - angle between vector and x axis.
   2. `vector.angle_y` - angle between vector and y axis.
   3. `vctor.angle_z` - angle between vector and z axis.
-     (radians)
+     (above angles will be in radians) suffix `_deg` at the end of the attribute to get angle in degrees.
+- ### define vector using string !
+ vector(`x y z`) will return vector object : vector(x, y, z)      
 
 ### updates in vut
 
@@ -53,5 +55,5 @@ defined the following functions :-
 1. `divider(a,b,m,n)` : returns a point that divides the line segment joining `a` and `b` by in the ratio `m`:`n`.
 2. `distance(a,b)` : returns the distance between `a` and `b`
 3. `area_line(a,b)` : signed area under the line segment joining a and b.
-4. `area_polygon` : signed area fo polygon with any number of vertices. 
+4. `area_polygon` : signed area of polygon with any number of vertices. 
 5. `area_triangle` : area formed by a triangle with vertices `a` , `b` and `c`.
