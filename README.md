@@ -1,4 +1,4 @@
-# vectogebra v 0.0.6
+# vectogebra v 0.0.7 - 15 May 2022
 
 ### Python module for vector algebra
 
