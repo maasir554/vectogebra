@@ -22,7 +22,7 @@ record of major changes to the project including bug fixes will be stored here.
   3. `vctor.angle_z` - angle between vector and z axis.
      (above angles will be in radians) suffix `_deg` at the end of the attribute to get angle in degrees.
 - ### define vector using string !
- vector(`x y z`) will return vector object : vector(x, y, z)      
+  vector(`x y z`) will return vector object : vector(x, y, z)
 
 ### updates in vut
 
@@ -51,9 +51,15 @@ this module is an application of vector.py and utilities.py
 ```python
 import vectogebra.geometry as geo
 ```
+
 defined the following functions :-
+
 1. `divider(a,b,m,n)` : returns a point that divides the line segment joining `a` and `b` by in the ratio `m`:`n`.
 2. `distance(a,b)` : returns the distance between `a` and `b`
 3. `area_line(a,b)` : signed area under the line segment joining a and b.
-4. `area_polygon` : signed area of polygon with any number of vertices. 
+4. `area_polygon` : signed area of polygon with any number of vertices.
 5. `area_triangle` : area formed by a triangle with vertices `a` , `b` and `c`.
+
+## [0.0.8]
+
+- round() method defined for the vector class.
