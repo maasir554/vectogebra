@@ -103,6 +103,13 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(+v1, vect(1,2,3))
         self.assertEqual(+v2,vect(4,5,6))
         self.assertEqual(+vect(-1,5,-56),vect(-1,5,-56))
+    
+    def test_round_function(self):
+        a = vect(1.29,2.36,3.45)
+        b = vect(1.0453,2.0453,3.0453)
+        self.assertEqual(round(a), vect(1,2,3))
+        self.assertEqual(round(b), vect(1,2,3))
+        self.assertEqual(round(a,1), vect(1.3,2.4,3.5))
 
 
 

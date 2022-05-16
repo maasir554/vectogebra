@@ -261,8 +261,8 @@ class vector:
         else:
             return("Error: Vectors can only be compared among themselves")
 
-    # round() function / method overloading
-    def __round__(self,other) :
+    # round() function / method defination:-
+    def __round__(self,other = 0) :
         if type(other) == int:
             return(vector(round(self.i,other),round(self.j,other),round(self.k,other)))
         else:
