@@ -46,6 +46,12 @@ _OR_
 from vectogebra import utilities as vut
 ```
 
+### ⭐ import functions for geometry applications :
+
+```python
+from vectogebra import geometry as geo
+```
+
 # 🔥 Description of the module
 
 this module currently have two components : one is `vectogebra.vector`, which is the vector class (boject) defination. it contains the basic functionality.
@@ -187,6 +193,22 @@ import vectogebra.utilities as vut
 
 (more to come)
 
+## 📈 Geometry related functions :
+
+consider vectors `a`, `b` and `c` :
+ 
+| S. no. | function         | Return value                                                                                           | ⚠ Warning| 📃 Special instructions |
+| ------ | ---------------- | ------------------------------------------------------------------------------------------------------ |-------- | ------------------- |
+| 1.     | `divider(a,b,m,n)` | a position vector of a point that divides the line segment joining `a` and `b` by in the ratio `m`:`n`.| atleast one of `m` or `n` must be non-zero| |
+| 2.     | `distance(a,b)`     | distance between `a` and `b` | | |
+| 3.     | `area_line(a,b)`     | signed area under the line segment joining `a` and `b`.| x-y plane only (or area under projection of line on x-y plane)| |
+| 4.     | `area_polygon(*args)`     | Signed area of polygon whose vertices are given as input | x-y plane only (or projection on x-y plane)|if vertices listed in cyclic manner the area will be +ve else -ve.|
+| 5.     | `area_triangle(a, b, c)` | area of triangle with vertices `a` , `b`, and `c`| | |
+
+
+
+
+
 ---
 
 Author: Mohammad Maasir
@@ -199,4 +221,4 @@ PyPi :https://pypi.org/project/vectogebra/
 
 ---
 
-_Copyright (c) 2022 Mohammad Maasir_
+_Copyright © 2022 Mohammad Maasir_ 
