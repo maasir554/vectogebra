@@ -25,7 +25,7 @@ d = vect(3,0)
 o = vect(0,0)
 
 class TestStringMethods(unittest.TestCase):
-    def test_section(self):
+    def test_divider(self):
         self.assertEqual(geo.divider(a,b,1,1), vect(2,4,6))
 
     def test_distance(self):
