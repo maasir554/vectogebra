@@ -85,7 +85,7 @@ example :
 
 resultant `s` will also be a vector object.
 
-3. Dot product / scalar product and scalar multiplication
+#### 3. Dot product / scalar product and scalar multiplication
 
 the `*` operator will be used for dot product, or multiplication by a scalar.
 
@@ -95,9 +95,9 @@ example :
 
 `p = 5*v` OR `v*5` is same as "scalar 5 multiplied to vector v".
 
- 4. Cross product / vector multiplication
+ #### 4. Cross product / vector multiplication
 
-the `^` operator will be used for cross product, or vector product.
+the `^` operator (XOR operator) will be used for cross product, or vector product.
 
 example :
 
