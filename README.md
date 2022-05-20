@@ -16,7 +16,7 @@ this library was made by keeping its applications in Physics in mind (Mechanics,
 - physics friendly
 - Open for modifications
 
-# 💥 Install
+## 🌠 Install
 
 ```bash
 pip install --upgrade vectogebra
@@ -52,13 +52,13 @@ from vectogebra import utilities as vut
 from vectogebra import geometry as geo
 ```
 
-# 🔥 Description of the module
+## 🧾 Description of the module
 
 this module currently have two components : one is `vectogebra.vector`, which is the vector class (boject) defination. it contains the basic functionality.
 the second component, `vectogebra.utilities` contains useful functions that are defined for the above mentioned vector class like, function to find angle between
 two vectors, etc.
 
-## Create a vector object :
+Create a vector object :
 
 ```python
 import vectogebra.vector as vect
@@ -66,16 +66,16 @@ import vectogebra.vector as vect
 v1 = vect(1,2,3)
 ```
 
-## 🔢 Algebric operations :
+### 🔢 Algebric operations :
 
-### 1. Addition
+#### 1. Addition
 
 consider two(or more) vectors : a,b,...
 their sum will be given by :
 `s = a + b + ...`
 sum `s` will also be a vector object.
 
-### 2. Subtraction
+#### 2. Subtraction
 
 Vectors can be subtracted using the minus (`-`) operator.
 
@@ -85,7 +85,7 @@ example :
 
 resultant `s` will also be a vector object.
 
-### 3. Dot product / scalar product and scalar multiplication
+3. Dot product / scalar product and scalar multiplication
 
 the `*` operator will be used for dot product, or multiplication by a scalar.
 
@@ -95,7 +95,7 @@ example :
 
 `p = 5*v` OR `v*5` is same as "scalar 5 multiplied to vector v".
 
-### 4. Cross product / vector multiplication
+ 4. Cross product / vector multiplication
 
 the `^` operator will be used for cross product, or vector product.
 
@@ -103,7 +103,7 @@ example :
 
 `p = a^b` is same as "p equals a cross b".
 
-### 5. division by a scalar
+5. division by a scalar
 
 simply divide a vector by a scalar.
 NOTE : division by zero or division vector is not supported.
@@ -112,21 +112,21 @@ example :
 
 `p = v / 5` is same as "p equals v divided by 5".
 
-## ❌✔️ Logical operations :
+### ❌✔️ Logical operations :
 
-### 1. Equality
+#### 1. Equality
 
-`a == b` returnes True when a and b are equal in magnitude and direction. else, it returns False
+ `a == b` returnes True when a and b are equal in magnitude and direction. else, it returns False
 
-### 2. Inequality
+#### 2. Inequality
 
-`a != b` have its usual meaning
+ `a != b` have its usual meaning
 
-### 3. grater / lesser
+#### 3. grater / lesser
 
-the **magnitude** of the vectors can be compared using common logical operators.
+ the **magnitude** of the vectors can be compared using common logical operators.
 
-```
+```python
 # a and b are vectors
 a > b
 a < b
