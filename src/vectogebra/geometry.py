@@ -4,8 +4,8 @@ try:
     from .vector import vector as vect
     import utilities as vut
 except:
-   vect = importlib.import_module('vector').vector
-   import utilities as vut
+   vect = importlib.import_module('.vector').vector
+   vut = importlib.import_module('.utilities')
 # section formula for two vectors 
 def divider(a,b,m,n):
     p = (((m*b)+(n*a))/(m+n))
@@ -13,6 +13,7 @@ def divider(a,b,m,n):
 
 def distance(a,b):
     if type(a) == type(b) == vect :
+
         return (b-a).mod
     else :
         raise TypeError("distance() takes two vectors as arguments")
