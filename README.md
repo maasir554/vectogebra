@@ -51,6 +51,11 @@ from vectogebra import utilities as vut
 ```python
 from vectogebra import geometry as geo
 ```
+_OR_
+```python
+import vectogebra.geometry as geo
+```
+
 
 ## 🧾 Description of the module
 
