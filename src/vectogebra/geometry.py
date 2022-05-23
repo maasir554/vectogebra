@@ -1,11 +1,20 @@
+
+#----------------------------------------------------------------
+import pathlib
+import sys
+
+currentDIR = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(currentDIR))
+#----------------------------------------------------------------
+
 import importlib
 
 try:
     from .vector import vector as vect
     import utilities as vut
 except:
-   vect = importlib.import_module('.vector').vector
-   vut = importlib.import_module('.utilities')
+   vect = importlib.import_module('vector').vector
+   vut = importlib.import_module('utilities')
 # section formula for two vectors 
 def divider(a,b,m,n):
     p = (((m*b)+(n*a))/(m+n))
@@ -75,4 +84,56 @@ def area_polygon(*args):
     for idx in range(0,l-1,1):
         TotalArea += area_line(args[idx],args[idx+1])
     return TotalArea
+
+
+#to check if the given points are coplanar :-
+def coplanar(*args):
+    """
+    To check if the given points are coplanar or not.
+    
+    ---
+    
+    args : position vectors of all the points whose coplanarity is to be verified.
+    
+    ---
+
+    Returns : 
+        - True : if the points are coplanar
+        - False : if the points are not coplanar
+
+    """
+
+    l = len(args)
+    
+    # choosing args[0] as the reference vector.
+    
+    # making a list of displacement vectors of points oyther than args[0] w.r.t. args[0] 
+
+    dispVectors = []
+    for i in args :
+        if i !=args[0] :
+            dispVectors.append(args[0]-i)
+    else :
+        pass
+    
+    # default return value of the function : True
+
+    returnValue = True
+    # checking the directions off cross products of displacement vectors  
+    # with the reference vector as R = dispVectors[0]^dispVectors[1]
+    R = dispVectors[0]^dispVectors[1]
+    for i in dispVectors[1 : len(dispVectors)] :  
+                 
+        if (i^dispVectors[0]).magnitude != 0 :
+            uv1 = vut.unit_vector(R)
+            uv2 = vut.unit_vector(i^dispVectors[0])
+            check = uv1 == uv2
+            if (vut.unit_vector(i^dispVectors[0]) != vut.unit_vector(R) ) and ( vut.unit_vector(i^dispVectors[0]) != -vut.unit_vector(R) ) :
+                returnValue = False
+                break
+            else :
+                pass
+        else : 
+            pass      
+    return returnValue
 
