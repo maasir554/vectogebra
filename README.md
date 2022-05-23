@@ -51,11 +51,12 @@ from vectogebra import utilities as vut
 ```python
 from vectogebra import geometry as geo
 ```
+
 _OR_
+
 ```python
 import vectogebra.geometry as geo
 ```
-
 
 ## 🧾 Description of the module
 
@@ -100,7 +101,7 @@ example :
 
 `p = 5*v` OR `v*5` is same as "scalar 5 multiplied to vector v".
 
- #### 4. Cross product / vector multiplication
+#### 4. Cross product / vector multiplication
 
 the `^` operator (XOR operator) will be used for cross product, or vector product.
 
@@ -121,15 +122,15 @@ example :
 
 #### 1. Equality
 
- `a == b` returnes True when a and b are equal in magnitude and direction. else, it returns False
+`a == b` returnes True when a and b are equal in magnitude and direction. else, it returns False
 
 #### 2. Inequality
 
- `a != b` have its usual meaning
+`a != b` have its usual meaning
 
 #### 3. grater / lesser
 
- the **magnitude** of the vectors can be compared using common logical operators.
+the **magnitude** of the vectors can be compared using common logical operators.
 
 ```python
 # a and b are vectors
@@ -201,18 +202,15 @@ import vectogebra.utilities as vut
 ## 📈 Geometry related functions :
 
 consider vectors `a`, `b` and `c` :
- 
-| S. no. | function         | Return value                                                                                           | ⚠ Warning| 📃 Special instructions |
-| ------ | ---------------- | ------------------------------------------------------------------------------------------------------ |-------- | ------------------- |
-| 1.     | `divider(a,b,m,n)` | a position vector of a point that divides the line segment joining `a` and `b` by in the ratio `m`:`n`.| atleast one of `m` or `n` must be non-zero| |
-| 2.     | `distance(a,b)`     | distance between `a` and `b` | | |
-| 3.     | `area_line(a,b)`     | signed area under the line segment joining `a` and `b`.| x-y plane only (or area under projection of line on x-y plane)| |
-| 4.     | `area_polygon(*args)`     | Signed area of polygon whose vertices are given as input | x-y plane only (or projection on x-y plane)|if vertices listed in cyclic manner the area will be +ve else -ve.|
-| 5.     | `area_triangle(a, b, c)` | area of triangle with vertices `a` , `b`, and `c`| | |
 
-
-
-
+| S. no. | function                 | Return value                                                                                            | ⚠ Warning                                                      | 📃 Special instructions                                                |
+| ------ | ------------------------ | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 1.     | `divider(a,b,m,n)`       | a position vector of a point that divides the line segment joining `a` and `b` by in the ratio `m`:`n`. | atleast one of `m` or `n` must be non-zero                     |                                                                        |
+| 2.     | `distance(a,b)`          | distance between `a` and `b`                                                                            |                                                                |                                                                        |
+| 3.     | `area_line(a,b)`         | signed area under the line segment joining `a` and `b`.                                                 | x-y plane only (or area under projection of line on x-y plane) |                                                                        |
+| 4.     | `area_polygon(*args)`    | Signed area of polygon whose vertices are given as input                                                | x-y plane only (or projection on x-y plane)                    | if vertices listed in cyclic manner the area will be +ve else -ve.     |
+| 5.     | `area_triangle(a, b, c)` | Area of triangle with vertices `a` , `b`, and `c`                                                       |                                                                |                                                                        |
+| 6.     | `coplanar(*args)`        | `True` : If all the points are coplanar else `False`                                                    | Arguments must be **position vectors.**                        | Keep in mind the difference between a _vector_ and a _position vector_ |
 
 ---
 
@@ -226,4 +224,4 @@ PyPi :https://pypi.org/project/vectogebra/
 
 ---
 
-_Copyright © 2022 Mohammad Maasir_ 
+_Copyright © 2022 Mohammad Maasir_

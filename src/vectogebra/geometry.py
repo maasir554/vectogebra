@@ -118,7 +118,6 @@ def coplanar(*args : vect):
             pass
         
         # default return value of the function : True
-
         returnValue = True
         # checking the directions of cross products of displacement vectors  
         # with the reference vector as R = dispVectors[0]^dispVectors[1]
