@@ -49,6 +49,22 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(geo.area_polygon(*[o,c,d]),6)
         self.assertEqual(geo.area_polygon(o,c,d),6)
 
+    def test_coplanar(self):
+        v1 = vect(1,1)
+        v2 = vect(1,2)
+        v3 = vect(2,1)
+        #---
+        a1 = vect(1,1,1)
+        a2 = vect(1,2,1)
+        a3 = vect(2,1,1)
+        #---
+        b1 = vect(789,0.0051,5656.89)
+        b2 = vect(59851,7006989,589656.89)
+        #---
+        self.assertTrue(geo.coplanar(v1,v2,v3))
+        self.assertTrue(geo.coplanar(a1,a2,a3))
+        self.assertFalse(geo.coplanar(b1,a1,b2,a3))
+        self.assertTrue(geo.coplanar(a1,a1,a2,a2))
 
 if __name__ == '__main__':
     unittest.main()

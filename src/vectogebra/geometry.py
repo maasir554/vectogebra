@@ -20,7 +20,7 @@ def divider(a,b,m,n):
     p = (((m*b)+(n*a))/(m+n))
     return p
 
-def distance(a,b):
+def distance(a : vect,b : vect):
     if type(a) == type(b) == vect :
 
         return (b-a).mod
@@ -53,7 +53,7 @@ def area_line(a,b):
         raise TypeError("area_line_x() takes two vectors as arguments")
 
 # enter the position vectors of all the vertices in a clockwise manner :
-def area_polygon(*args):
+def area_polygon(*args : vect):
     
     """
     ### area_polygon(*args) - 2D only.
@@ -87,7 +87,7 @@ def area_polygon(*args):
 
 
 #to check if the given points are coplanar :-
-def coplanar(*args):
+def coplanar(*args : vect):
     """
     To check if the given points are coplanar or not.
     
@@ -109,31 +109,31 @@ def coplanar(*args):
     
     # making a list of displacement vectors of points oyther than args[0] w.r.t. args[0] 
 
-    dispVectors = []
-    for i in args :
-        if i !=args[0] :
-            dispVectors.append(args[0]-i)
-    else :
-        pass
-    
-    # default return value of the function : True
+    if l >= 3 :
+        dispVectors = []
+        for i in args :
+            if i !=args[0] :
+                dispVectors.append(args[0]-i)
+        else :
+            pass
+        
+        # default return value of the function : True
 
-    returnValue = True
-    # checking the directions off cross products of displacement vectors  
-    # with the reference vector as R = dispVectors[0]^dispVectors[1]
-    R = dispVectors[0]^dispVectors[1]
-    for i in dispVectors[1 : len(dispVectors)] :  
-                 
-        if (i^dispVectors[0]).magnitude != 0 :
-            uv1 = vut.unit_vector(R)
-            uv2 = vut.unit_vector(i^dispVectors[0])
-            check = uv1 == uv2
-            if (vut.unit_vector(i^dispVectors[0]) != vut.unit_vector(R) ) and ( vut.unit_vector(i^dispVectors[0]) != -vut.unit_vector(R) ) :
-                returnValue = False
-                break
-            else :
-                pass
-        else : 
-            pass      
-    return returnValue
+        returnValue = True
+        # checking the directions of cross products of displacement vectors  
+        # with the reference vector as R = dispVectors[0]^dispVectors[1]
+        R = dispVectors[0]^dispVectors[1]
+        for i in dispVectors[1 : len(dispVectors)] :  
+
+            if (i^dispVectors[0]).magnitude != 0 :
+                if (vut.unit_vector(i^dispVectors[0]) != vut.unit_vector(R) ) and ( vut.unit_vector(i^dispVectors[0]) != -vut.unit_vector(R) ) :
+                    returnValue = False
+                    break
+                else :
+                    pass
+            else : 
+                pass      
+        return returnValue
+    else :
+        return True # as three points are always coplanar in sD space.
 
