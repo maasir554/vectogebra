@@ -62,4 +62,10 @@ defined the following functions :-
 
 ## [0.0.8]
 
-- round() method defined for the vector class.
+### 1. changes in vector class
+
+- `round()` method defined for the vector class.
+
+### 2. changes in geometry.py mudule:
+
+- `coplanar()` function defined. this function returns `True` if the given points are coplanar. else returns `False`. - _23 May, 2022_
