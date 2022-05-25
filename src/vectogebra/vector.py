@@ -37,7 +37,6 @@
 """
 
 import math
-from turtle import degrees
 
 
 class vector:

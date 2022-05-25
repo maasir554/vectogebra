@@ -128,11 +128,13 @@ def is_parallel(v1, v2):
 
 # function to obtain unit vector from a given vector
 def unit_vector(v):
-    return (v / v.magnitude)
-
+    if v.magnitude != 0 :
+        return (v / v.magnitude)
+    else:
+        return v # zero vector has arbitrary direction.
 
 def direction(v):
-    return (v / v.magnitude)
+    return unit_vector(v)
 
 
 ###########################################################
