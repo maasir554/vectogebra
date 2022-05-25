@@ -65,5 +65,28 @@ class TestStringMethods(unittest.TestCase):
         self.assertFalse(geo.coplanar(b1,a1,b2,a3))
         self.assertTrue(geo.coplanar(a1,a1,a2,a2))
 
+    def test_class_line(self):
+        a1 = vect('2 1 -2')
+        b1 = vect('6 -8 10')
+        a2 = vect('-1 -1 5')
+        b2 = vect('6 7 -2')
+        l1 = geo.line(p=a1,d=b1)
+        l2 = geo.line(p=a2,d=b2)
+        #---
+        self.assertEqual(l1.point, a1)
+        self.assertEqual(l1.direction, b1)
+        self.assertEqual(l2.point, a2)
+        self.assertEqual(l2.direction, b2)
+        #---
+        self.assertFalse(l1.intersects(l2))
+        self.assertFalse(l2.intersects(l1))
+        #---
+        self.assertEqual(l1.distance(l2),5.091168824543141)
+        self.assertEqual(l2.distance(l1),5.091168824543141)
+        self.assertEqual(l1.intersection(l2),None)
+        self.assertEqual(l2.intersection(l1),None)
+        #---
+        
+
 if __name__ == '__main__':
     unittest.main()
