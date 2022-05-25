@@ -207,10 +207,13 @@ class line:
         if (a == None and b == None) and ('pt' in kwargs) and ('dir' in kwargs) :
             self.direction = kwargs['dir']
             self.point = kwargs['pt']
-    
+        
     
     def __type__(self):
         return "line"
+
+    def __str__(self):
+        return "line : point = " + str(self.point) + " , direction = " + str(self.direction) 
 
 
     # function to check if the line includes (or passes through) a point :
@@ -239,58 +242,82 @@ class line:
             return False
 
 
-    # function to check if two lines intersect or not :
-    def intersects(self,other) :
+    # function to check if the given two lines are parallel
+    def parallel(self,other) :
         """
-        Function to check if two lines intersect or not.
+        Function to check if the given two lines are parallel.
 
         ---
 
-        argument : another line object.
+        argument : line object.
+
+        ---
+
+        Returns : True if the lines are parallel, False otherwise.
+
+        """
+        if (self.direction^other.direction).magnitude == 0 :
+            return True
+        else :
+            return False
+    
+    #function to find  shorest distance between two skew lines, parallel lines, or between a line and a point. 
+    def distance(self,other) :
+        """
+        Function to find shortest distance between two lines(skew or parallel), or between a line and a point.
+
+        ---
+
+        Argument : `line` object or position vector of a point
+
+        ---
+
+        Returns : shortest distance
+
+        """
+        if type(other) == type(self) :   
+            if self.parallel(other) == False :   
+                return abs((self.point-other.point)*(vut.unit_vector(self.direction^other.direction)))
+    
+            elif self.parallel(other) == True : 
+                a1 = self.point 
+                b1 = self.direction 
+                a2 = other.point
+                disp = a1 -a2
+    
+                if b1.magnitude != 0 :    
+                    return ((disp ^ b1)/(b1.magnitude)).magnitude
+                else :
+                    raise ValueError("Direction vector cannot be zero.")
+
+        # if other is a point:
+        elif type(other) == vect:
+            a = self.point
+            b = self.direction
+            p = other
+            return (p-a)^(b/b.magnitude)
+
+
+    
+    # function to check if two lines intersect or not :
+    def intersects(self,other) :
+        """
+        Function to check if two lines intersect or not. OR a line and a point intersects or not.
+
+        ---
+
+        argument : another `line` object. OR a point (`vector`)
 
         ---
 
         Returns : True if the lines intersect, False otherwise.
 
         """
-        # extracting vectors from the lines :
-        # ---
-        P1 = self.point
-        D1 = self.direction
-        # ---
-        P2 = other.point
-        D2 = other.direction
-        # ---
-        # --- --- --- 
-        
-        # extracting the components of vectors defined above.
-        # ---
-        p = P1.x
-        q = P1.y
-        r = P1.z
-        # ---
-        s = D1.x
-        t = D1.y
-        u = D1.z
-        # ---
-        # ---
-        a = P2.x
-        b = P2.y
-        c = P2.z    
-        # ---
-        f = D2.x
-        g = D2.y
-        h = D2.z
-        # ---
-        # --- --- ---
-        
-        # by mathematical calculations following condition is observed :
-        if (f*t != s*g) or (u*f != s*h) or (u*g != t*h) :
+        # The previous logic was wrong, as it ignored skew lines.
+        if self.distance(other) == 0 :
             return True
         else :
             return False
-        
-        # this took me 2 hours to figure out the logic !
 
     def intersection(self,other) :
         """
@@ -343,14 +370,6 @@ class line:
             INTERSECTION = P2 + (phi*D2)
             return INTERSECTION
 
-        else : 
-            if (s/f) == (t/g) == (u/h) :
-                print("The lines are parallel !")
-                return None
-            else :
-                print("The lines are skew lines !")
-                return None
-        # this function in not fully perfect as it an not yet detect skew lines.
-        # it will still work for the lines that intersects each other
-        # and th function intersects() is also not perfect. it can not detect skew lines
+        else:
+            return None
 
