@@ -69,3 +69,10 @@ defined the following functions :-
 ### 2. changes in geometry.py mudule:
 
 - `coplanar()` function defined. this function returns `True` if the given points are coplanar. else returns `False`. - _23 May, 2022_
+
+- Class `line` defined. this class represents a line in 3-dimensional space. its methods inclode :-
+  - `self.parallel(line)` : returns `True` if the given line is parallel to the current line.
+  - `self.intersection(line)` : returns the intersection point of the current line and the given line.
+  - `self.distance(other)` : returns the (shortest)distance between the current line and the given line or point.
+  - `self.intersect(line)` returns `True` if given line intersects with the current line.
+  - `self.includes` : returns `True` if the given point is on the current line.
