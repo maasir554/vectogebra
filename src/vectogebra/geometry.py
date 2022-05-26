@@ -209,34 +209,35 @@ class line:
 
         # two-point form :
 
-        if (a == None and b == None) and ('point' in kwargs) and ('direction' in kwargs) :
-            if type(kwargs['direction']) == type(kwargs['point']) == vect :    
-                self.direction = kwargs['direction']
-                self.point = kwargs['point']
-            elif (type(kwargs['direction']) == type(kwargs['point']) == tuple) or (type(kwargs['direction']) == type(kwargs['point']) == list) :
-                self.direction = vect(kwargs['direction'][0],kwargs['direction'][1],kwargs['direction'][2])
-                self.point = vect(kwargs['point'][0],kwargs['point'][1],kwargs['point'][2])
-
-
-        if (a == None and b == None) and ('p' in kwargs) and ('d' in kwargs) :
-            
-            if type(kwargs['d']) == type(kwargs['p']) == vect :
-                self.direction = kwargs['d']
-                self.point = kwargs['p']
-            elif (type(kwargs['d']) == type(kwargs['p']) == tuple) or (type(kwargs['d']) == type(kwargs['p']) == list) :
-                self.direction = vect(kwargs['d'][0],kwargs['d'][1],kwargs['d'][2])
-                self.point = vect(kwargs['p'][0],kwargs['p'][1],kwargs['p'][2])
+        #---
+        if 'point' in kwargs :
+            p = kwargs['point']
+        if 'p' in kwargs :
+            p = kwargs['p']
+        if 'pt' in kwargs :
+            p = kwargs['pt']
+        #---
+        if 'direction' in kwargs :
+            d = kwargs['direction']
+        if 'd' in kwargs :
+            d = kwargs['d']
+        if 'dir' in kwargs :
+            d = kwargs['dir']
+        #---
         
+        if p != None and d != None :
+            if type(p) == vect:
+                self.point = p
+            elif type(p) == list or type(p) == tuple :
+                self.point = vect(p)
+            #---
+            if type(d) == vect:
+                self.direction = d
+            elif type(d) == list or type(d) == tuple :
+                self.direction = vect(d)
 
-        if (a == None and b == None) and ('pt' in kwargs) and ('dir' in kwargs) :
-            
-            if type(kwargs['dir']) == type(kwargs['pt']) == vect :
-                self.direction = kwargs['dir']
-                self.point = kwargs['pt']
-            elif (type(kwargs['dir']) == type(kwargs['pt']) == tuple) or (type(kwargs['dir']) == type(kwargs['pt']) == list) :
-                self.direction = vect(kwargs['dir'][0],kwargs['dir'][1],kwargs['dir'][2])
-                self.point = vect(kwargs['pt'][0],kwargs['pt'][1],kwargs['pt'][2])
-        
+
+
         # shorthands :
         self.p = self.point
         self.pt = self.point
@@ -535,3 +536,4 @@ class plane(object) :
         self.p = self.point
         self.pt = self.point
         self.n = self.normal
+        self.norm = self.normal
