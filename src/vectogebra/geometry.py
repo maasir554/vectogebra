@@ -531,9 +531,94 @@ class plane(object) :
             self.normal = vect(n)
         else :
             pass
-
+        
+        #---
+        
         # shorthands :
         self.p = self.point
         self.pt = self.point
+        
         self.n = self.normal
         self.norm = self.normal
+
+
+    #------------+-----------------+--------------# 
+    #------------| DUNDER METHODS  |--------------# 
+    #------------+-----------------+--------------# 
+    
+    def __repr__(self) :
+        return "Plane in 3D space : \npoint : {} \nnormal : {} \n[class plane from module vectogebra.geometry] ".format(self.point,self.normal)
+
+    def __str__(self) :
+        return "plane(normal = {}, point = {})".format(self.normal,self.point)
+
+    # equality of two planes :
+    def __eq__(self,other) :
+        # two planes are equal id their normal vectors are parallel(or anti-parallel)
+        # and if they have (atleast)one point in common.
+        # ---
+        if self.normal^other.normal == 0 :
+            if self.includes(other.point):
+                return True
+            else :
+                return False 
+        else :
+            return False
+    
+    
+    #------------+----------------------+--------------# 
+    #------------| IMPORTANT UTILITIES  |--------------# 
+    #------------+----------------------+--------------# 
+
+
+    def includes(self,arg:vect or tuple or list or line):
+        """
+        Function to check :
+        1. if a point is on the plane, or
+        2. if a line is completely on the plane.
+
+        ---
+
+        argument : can be any of the following : 
+        1. a point in 3D space.(vector or list/tuple of components)
+        2. a line in 3D space.(line object)
+
+        ---
+
+        Returns : True if the point is on the plane, False otherwise.
+
+        """
+        point = None
+        line0 = None
+
+        #---
+
+        if type(arg)==vect:
+            point = arg
+        elif type(arg) == list or type(arg) == tuple :
+            point = vect(arg)
+
+        #---
+
+        if type(arg) == line:
+            line0 = arg
+
+        #---
+        if point !=None and abs(self.normal^(point-self.point)) == 0 :
+            return True
+        # a line is said to be contained in a plane if : 
+        # 1. the direction of it is perpendicular to the normal vector of the plane.
+        # 2. the line and the plane have atleast one point in common.
+        elif line0 != None and  line0.direction*self.normal == 0 :
+            # the following is the condition required while solvinf equation of a line and a plane.
+            # the quantities which are crosseed must be proportional to each other. that's why the cross product is ZERO.
+            return abs((line0.point*(self.normal - self.point))^(line0.direction*(self.normal - self.point))) == 0
+        else :
+            return False
+    
+    
+    def contains(self,arg:vect or tuple or list or line) :
+        return self.includes(arg)
+
+
+
