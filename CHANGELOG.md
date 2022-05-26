@@ -66,6 +66,7 @@ defined the following functions :-
 
 - `round()` method defined for the vector class.
 - Conversions to `list` , `dict`, and `tuple` using attribute names :
+  _[26 May, 2022]_
   ```python
     v = vectorgbra.vector(1,2,3)
     v.list # returns list of components in order of x, y, z.
@@ -86,3 +87,31 @@ defined the following functions :-
   - `self.distance(other)` : returns the (shortest)distance between the current line and the given line or point.
   - `self.intersect(line)` returns `True` if given line intersects with the current line.
   - `self.includes` : returns `True` if the given point is on the current line.
+
+  [ _26 May, 2022_ ]
+
+  - To construct a line object instance :
+    ```python
+    # if p1 and p2 are points on the line
+    line1 = vectogebra.geometry.line(p1, p2)
+    # if a is a point on the line and b is the direction vector :
+    line2 = vectogebra.geometry.line(point = a, direction = b)
+    # in place of point, p or pt can also be used.
+    # in place of direction, d or dir can also be used.
+    ```
+  - equality of line also defined : if two lines have same direction and one point in common, they are equal.
+  - `line.__eq__(other)` : returns `True` if the given line is equal to the current line. else returns `False`.
+    ```python
+     >>>import vectogebra
+     >>>line1 = vectgebra.geometry.line(p=vectogebra.vector(0,0,0),d=vectogebra.vector(1,1,1))
+     >>>line2 = vectogebra.geometry.line(p=vectogebra.vector(5,5,5),d=vectogebra.vector(99,99,99))
+     >>>line1 == line2
+     >>>True
+    ```
+  - Now line can also be constructed using `tuple` or `list` instead of `vector` :
+    ```py
+    line1 = vectogebra.geometry.line(p=(1,2,4),d=(15,12,33))
+    # two point method also applicable :
+    line2 = vectogebra.geometry.line((12,46,67),(12,98,65))
+    # similarly, tuples can also be used.
+    ```

@@ -186,7 +186,20 @@ class line:
     - here, `a` and `b` are position vectors of the two points through which the line is passing.
     """
 
-    def __init__(self,a : vect = None,b : vect = None,**kwargs) :
+    def __init__(self,p1 : vect or tuple or list = None,p2 : vect or list = None,**kwargs) :
+        
+        # NEW : now line object can be constructed using list or tuples also.
+
+        if type(p1) == type(p2) == vect :
+            a = p1
+            b = p2
+        elif type(p1) == type(p2) == tuple or type(p1) == type(p2) == list :
+            a = vect(p1[0],p1[1],p1[2])
+            b = vect(p2[0],p2[1],p2[2])
+        elif p1 == p2 == None :
+            a = None
+            b = None
+        # ---
         
         # Point-direction form :
         
@@ -197,17 +210,39 @@ class line:
         # two-point form :
 
         if (a == None and b == None) and ('point' in kwargs) and ('direction' in kwargs) :
-            self.direction = kwargs['direction']
-            self.point = kwargs['point']
+            if type(kwargs['direction']) == type(kwargs['point']) == vect :    
+                self.direction = kwargs['direction']
+                self.point = kwargs['point']
+            elif (type(kwargs['direction']) == type(kwargs['point']) == tuple) or (type(kwargs['direction']) == type(kwargs['point']) == list) :
+                self.direction = vect(kwargs['direction'][0],kwargs['direction'][1],kwargs['direction'][2])
+                self.point = vect(kwargs['point'][0],kwargs['point'][1],kwargs['point'][2])
+
 
         if (a == None and b == None) and ('p' in kwargs) and ('d' in kwargs) :
-            self.direction = kwargs['d']
-            self.point = kwargs['p']
+            
+            if type(kwargs['d']) == type(kwargs['p']) == vect :
+                self.direction = kwargs['d']
+                self.point = kwargs['p']
+            elif (type(kwargs['d']) == type(kwargs['p']) == tuple) or (type(kwargs['d']) == type(kwargs['p']) == list) :
+                self.direction = vect(kwargs['d'][0],kwargs['d'][1],kwargs['d'][2])
+                self.point = vect(kwargs['p'][0],kwargs['p'][1],kwargs['p'][2])
+        
 
         if (a == None and b == None) and ('pt' in kwargs) and ('dir' in kwargs) :
-            self.direction = kwargs['dir']
-            self.point = kwargs['pt']
+            
+            if type(kwargs['dir']) == type(kwargs['pt']) == vect :
+                self.direction = kwargs['dir']
+                self.point = kwargs['pt']
+            elif (type(kwargs['dir']) == type(kwargs['pt']) == tuple) or (type(kwargs['dir']) == type(kwargs['pt']) == list) :
+                self.direction = vect(kwargs['dir'][0],kwargs['dir'][1],kwargs['dir'][2])
+                self.point = vect(kwargs['pt'][0],kwargs['pt'][1],kwargs['pt'][2])
         
+        # shorthands :
+        self.p = self.point
+        self.pt = self.point
+
+        self.d = self.direction
+        self.dir = self.direction
     
     def __type__(self):
         return "line"
@@ -372,4 +407,35 @@ class line:
 
         else:
             return None
+
+    # dunter methods
+    
+    # dunction for equality of two lines :
+    def __eq__(self,other) :
+        """
+        Function to check if two lines are equal.
+
+        ---
+
+        argument : another `line` object.
+
+        ---
+
+        Returns : True if the lines are equal, False otherwise.
+
+        """
+        L1 = self
+        L2 = other
+
+        a1 = self.point
+        b1 = self.direction
+
+        a2 = other.point
+        b2 = other.direction
+
+        if L1.includes(a2) and L2.includes(a1) and L1.parallel(L2) :
+            return True
+        else :
+            return False
+
 
