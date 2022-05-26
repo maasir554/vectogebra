@@ -65,12 +65,22 @@ defined the following functions :-
 ### 1. changes in vector class
 
 - `round()` method defined for the vector class.
+- Conversions to `list` , `dict`, and `tuple` using attribute names :
+  ```python
+    v = vectorgbra.vector(1,2,3)
+    v.list # returns list of components in order of x, y, z.
+    v.dict # returns dict of components in order of x, y, z.
+    v.tuple # returns tuple of components in order of x, y, z.
+  ```
 
 ### 2. changes in geometry.py mudule:
 
 - `coplanar()` function defined. this function returns `True` if the given points are coplanar. else returns `False`. - _23 May, 2022_
 
-- Class `line` defined. this class represents a line in 3-dimensional space. its methods inclode :-
+- Class `line` defined. this class represents a line in 3-dimensional space. its methods include :-
+
+  [ _25 May, 2022_ ]
+
   - `self.parallel(line)` : returns `True` if the given line is parallel to the current line.
   - `self.intersection(line)` : returns the intersection point of the current line and the given line.
   - `self.distance(other)` : returns the (shortest)distance between the current line and the given line or point.

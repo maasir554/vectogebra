@@ -118,6 +118,19 @@ class vector:
         self.angle_x_deg = self.angle_x * 180 / math.pi
         self.angle_y_deg = self.angle_y * 180 / math.pi
         self.angle_z_deg = self.angle_z * 180 / math.pi
+
+
+        # --- CONVERSIONS ---
+
+        # list of components :
+        self.list = [self.i, self.j, self.j] 
+
+        # dictionary of components :
+        self.dict = {'x':self.i, 'y':self.j, 'z':self.k}
+        
+        # tuple of components :
+        self.tuple = (self.i, self.j, self.k)
+
         
         
 
