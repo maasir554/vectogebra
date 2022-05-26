@@ -337,10 +337,3 @@ def polar_to_vector(r, theta, atype="rad"):
     else:
         raise ValueError("Third argument must be either 'radians' or 'radian' or 'rad' or 'degrees' or 'degree' or 'deg'")
 
-
-# print(polar_to_vector(1, 2*math.pi/2))
-# print(polar_to_vector(1,3*math.pi/2))
-# print(polar_to_vector(1,4*math.pi/2))
-# print(polar_to_vector(1,5*math.pi/2))
-
-

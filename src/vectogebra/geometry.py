@@ -326,6 +326,26 @@ class line:
                 else :
                     raise ValueError("Direction vector cannot be zero.")
 
+        # distance between a line and a plane :
+        elif type(other) == plane :
+            line0 = self
+            plane0 = other
+            # ---
+            a = line0.point
+            b = line0.direction
+            # ---
+            p = plane0.point
+            n = plane0.normal
+            # ---
+            d = (a-p)*(vut.unit_vector(n))
+            # ---
+            if abs(n^b) == 0 :
+                return 0
+            else :
+                return abs(d)
+            
+
+
         # if other is a point:
         elif type(other) == vect:
             a = self.point
