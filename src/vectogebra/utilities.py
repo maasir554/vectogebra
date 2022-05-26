@@ -177,6 +177,19 @@ def magnitude(v):
     else:
         raise TypeError("Argument must be a vector or a number")
 
+def proportional(a:v or tuple or list,b:v or tuple or list)->bool:
+    if type(a) == v:
+        v1 = a
+    else :
+        v1 = v(a)
+
+    if type(b) == v:
+        v2 = b
+    else:
+        v2 = v(b)
+
+    return abs(v1 ^ v2) == 0
+
 
 ###########################################################
 
@@ -329,3 +342,5 @@ def polar_to_vector(r, theta, atype="rad"):
 # print(polar_to_vector(1,3*math.pi/2))
 # print(polar_to_vector(1,4*math.pi/2))
 # print(polar_to_vector(1,5*math.pi/2))
+
+
