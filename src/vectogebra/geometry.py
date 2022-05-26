@@ -410,7 +410,7 @@ class line:
 
     # dunder methods
     
-    # dunction for equality of two lines :
+    # function for equality of two lines :
     def __eq__(self,other) :
         """
         Function to check if two lines are equal.
@@ -439,3 +439,99 @@ class line:
             return False
 
 
+# defining class plane :
+class plane(object) :
+    """
+    Class to define a plane.
+
+    ---
+
+    ### Methods of defining a plane : 
+    #### 1. by a point and a normal vector :
+    ```
+    plane(point=(x,y,z),normal=(a,b,c))
+    ```    
+       
+    - vector object or list of componens can also be used instead of tuples.
+    - instead of `point`, `p` or `pt` can also be used.
+    - instead of `normal`, `n` or `norm` can also be used.
+
+    #### 2. by three points :
+    ```
+    plane((x1,y1,z1),(x2,y2,z2),(x3,y3,z3))
+    ``` 
+    - vector `vectogebra.vector(x,y,z)` object or lists of components `[x,y,z]` can also be used instead of tuples.
+    ---
+
+    Attributes :
+        - `point` : position vector of the point on the plane.
+        - `normal` : normal vector of the plane.
+
+    ---
+
+    """
+    def __init__(self,p1=None,p2=None,p3=None,**kwargs) :
+        
+        # initializing the attributes :
+        self.point = vect(0,0,0)
+        self.normal = vect(0,0,0)
+
+        # initializing the attributes with the values passed as arguments :
+        if 'point' in kwargs :
+            p = kwargs['point']
+        if 'p' in kwargs :
+            p = kwargs['p']
+        if 'pt' in kwargs :
+            p = kwargs['pt']
+        
+        #---
+
+        if 'normal' in kwargs :
+            n = kwargs['normal']
+        if 'n' in kwargs :
+            n = kwargs['n']
+        if 'norm' in kwargs :
+            n = kwargs['norm']
+        #---
+
+        if type(p)==vect:
+            self.point = p
+        elif type(p) == list or type(p) == tuple :
+            self.point = vect(p)
+        else :
+            pass
+        
+        #---
+
+        if p1 != None and p2 != None and p3 != None :
+            if type(p1) == vect :
+                v1 = p1
+            elif type(p1) == list or type(p1) == tuple :
+                v1 = vect(p1)
+            if type(p2) == vect:
+                v2 = p2
+            elif type(p2) == list or type(p2) == tuple :
+                v2 = vect(p2)
+            if type(p3) == vect:
+                v3 = p3
+            elif type(p3) == list or type(p3) == tuple :
+                v3 = vect(p3)
+            
+            self.point = v1
+            self.normal = (v2-v1)^(v3-v1)
+
+                
+
+        #---
+
+        if type(n)==vect:
+            self.normal = n
+        elif type(n) == list or type(n) == tuple :
+            self.normal = vect(n)
+        else :
+            pass
+
+        # shorthands :
+        self.p = self.point
+        self.pt = self.point
+        self.n = self.normal
