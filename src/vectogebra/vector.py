@@ -78,6 +78,8 @@ class vector:
                     self.k = float(lst[2])
             else:
                 raise ValueError("Invalid input")
+        elif type(i) == type(None) :
+            raise ValueError("Invalid input : None can not be used to construct a vector object.")
 
 
 
@@ -279,6 +281,9 @@ class vector:
             return(vector(round(self.i,other),round(self.j,other),round(self.k,other)))
         else:
             return("Error: Invalid input")
+
+    def __abs__(self):
+        return(self.magnitude)
 
     ########### More Dunder methods / Magic methods to be added #############
 
