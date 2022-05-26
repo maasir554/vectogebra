@@ -408,7 +408,7 @@ class line:
         else:
             return None
 
-    # dunter methods
+    # dunder methods
     
     # dunction for equality of two lines :
     def __eq__(self,other) :

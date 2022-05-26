@@ -86,7 +86,22 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(l1.intersection(l2),None)
         self.assertEqual(l2.intersection(l1),None)
         #---
-        
+
+        line1 = geo.line(p = vect(0,0,0), d = vect(1,1,1))
+        line2 = geo.line(p = vect(50,50,50), d = vect(99,99,99))
+        self.assertTrue(line1.includes(vect(23,23,23)))
+        self.assertTrue(line2==line1)
+        self.assertEqual(line1,line2)
+
+        #---
+        line3 = geo.line(p = (0,0,0), d = (1,1,1))
+        line4 = geo.line(p = (50,50,50), d = (99,99,99))
+        self.assertTrue(line3.includes(vect(23,23,23)))
+        self.assertTrue(line4==line3)
+        self.assertEqual(line3,line4)
+        self.assertEqual(line1,line4)
+        self.assertTrue(line2==line3==line1)
+
 
 if __name__ == '__main__':
     unittest.main()
