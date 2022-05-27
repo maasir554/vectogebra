@@ -591,7 +591,7 @@ class plane(object) :
     #------------+----------------------+--------------# 
 
 
-    def includes(self,arg:vect or tuple or list or line):
+    def includes(self,arg:vect or tuple or list or line or str):
         """
         Function to check :
         1. if a point is on the plane, or
@@ -605,7 +605,7 @@ class plane(object) :
 
         ---
 
-        Returns : True if the point is on the plane, False otherwise.
+        Returns : True if the point is on the plane or line is on the plane(completely), False otherwise.
 
         """
         point = None
@@ -614,9 +614,9 @@ class plane(object) :
         #---
 
         if type(arg)==vect:
-            point = arg
-        elif type(arg) == list or type(arg) == tuple :
-            point = vect(arg)
+            point = arg 
+        elif type(arg) == list or type(arg) == tuple or type(arg) == str or type(arg) == dict:
+            point  = vect(arg)
 
         #---
 
@@ -640,5 +640,129 @@ class plane(object) :
     def contains(self,arg:vect or tuple or list or line) :
         return self.includes(arg)
 
+    def distance(self, other : vect | line | tuple | list | dict | str ) -> int | float :
+        """
+            Function to find the distance between a plane and a point or a parallel line.
+
+            ---
+
+            argument : can be any of the following : 
+            1. a point in 3D space.(vector or list/tuple/dict of components)
+            2. a line in 3D space.(line object)
+
+            ---
+
+            Returns : distance between the plane and the point or parallel line.
+
+            """
+        a = None
+        line0 = None
+        p = self.point
+        n = self.normal
+        #---
+
+        if type(other)==vect:
+            a = other 
+        elif type(other) == list or type(other) == tuple or type(other) == str or type(other) == dict:
+            a  = vect(other)
+
+        #---
+
+        if type(other) == line:
+            line0 = other
+
+        #---
+        if a !=None :
+            return abs((a-p)*(n/n.magnitude))
+        #---
+        elif line0 != None :
+            return line0.distance(self)
+        #---
+        elif type(other) == plane :
+            n1 = self.n
+            n2 = other.n
+            p1 = self.p
+            p2 = other.p
+            if vut.proportional(n1,n2):
+                return abs((p2-p1)*(n1/n1.magnitude))
+            else :
+                return 0
+        #---
+        else :
+            return None
 
 
+    def intersection(self,other : line | tuple | list | dict | str | any ) -> vect | line :
+        """
+            Function to find the intersection point between a plane and a line or a plane.
+
+            ---
+
+            argument : can be any of the following : 
+            1. a plane in 3D space.(plane object)
+            2. a line in 3D space.(line object)
+
+            ---
+
+            Returns : intersection point between the plane and the line or plane.
+
+            """
+        
+        if type(other) == plane :
+            
+            n1 = self.n
+            n2 = other.n
+            #---
+            p1 = self.point
+            p2 = other.point
+            #---
+            
+            if vut.proportional(n1,n2) ==  False:
+                # we knoow that the direction of the line(intersection) is
+                # perpendicular to the normal vectors of both planes. Hence, we have :
+                
+                b = n1 ^n2 # the direction of resulting line
+                
+                #---
+                
+                # now we need a fixed point on the line (that is common to both planes.), to completely define the line.
+                # So, lets take a FIXED point on the line such that:
+                # when wejoin that point(Lets name it c) with the point p1, 
+                # we get a line which is perpendicular to the direction vector(i.e. b) of the line(intersection).
+                # this point will be a unique point.
+                # so, lets find the point c.
+                # we know that the line(intersection) is perpendicular to the normal vector of the plane.
+                # so, we can find the point c by :
+
+                v = b^n1 # direction vector of the line formed by joining the fixed point(c) with the point p1.
+
+                lmbd = ((p2 - p1)*n2)/(v*n2)    # constant of proportionality, computed by solvinf equations.  
+                c = p1 + lmbd*v                 # the fixed point on the line.
+                
+                #---
+
+                # finally the line is :
+                return line(point = c,direction = b)
+
+            elif type(other) == line :
+
+                p = self.point
+                n = self.normal
+
+                #---
+                a = other.point
+                b = other.direction
+                #---
+                
+                lmbd = ((p-a)*n)/(b*n)
+                #---
+                c = a + lmbd*b
+
+                return c
+                
+            else :
+                return None
+        #---
+        else :
+            return None
+    
