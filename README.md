@@ -1,4 +1,4 @@
-# vectogebra v 0.0.7 - 15 May 2022
+# vectogebra v 0.0.8 - 28 May 2022
 
 ### Python module for vector algebra
 
@@ -196,7 +196,7 @@ import vectogebra.utilities as vut
 | 20.    | `vut.list_to_vector(l)`                        | a vector object from a list of components                     |
 | 21.    | `vut.dict_to_vector(d)`                        | a vector object from a dictionary of components               |
 | 22.    | `vut.tuple_to_vector(t)`                       | a vector object from a tuple of components                    |
-|23.     | `vut.proportional(v1, v2)`                     | `True` if two vectors are proportional, otherwise : `False`   |
+| 23.    | `vut.proportional(v1, v2)`                     | `True` if two vectors are proportional, otherwise : `False`   |
 
 (more to come)
 
@@ -213,59 +213,71 @@ consider vectors `a`, `b` and `c` :
 | 5.     | `area_triangle(a, b, c)` | Area of triangle with vertices `a` , `b`, and `c`                                                       |                                                                |                                                                        |
 | 6.     | `coplanar(*args)`        | `True` : If all the points are coplanar else `False`                                                    | Arguments must be **position vectors.**                        | Keep in mind the difference between a _vector_ and a _position vector_ |
 
-## Useful classes for 3-Dimentional Geometry 
+## Useful classes for 3-Dimentional Geometry
+
 ### line :
-represents a line in a 3D space 
+
+represents a line in a 3D space
+
 #### construction of a line :
+
 1. Two - point form
-- two points (positions vectors)  or list/tuple/dict/string-representation of coordinates must be given to the constructor
-- examples : 
+
+- two points (positions vectors) or list/tuple/dict/string-representation of coordinates must be given to the constructor
+- examples :
+
   ```py
   import vectogebra.vector as vect
   import vectogebra.geometry as geo
-  
+
   line1 = geo.line(vect(5,8,9),vect(1,6,3))
   line2 = geo.line((5,8,9),(1,6,3)) # can replace tuples whit lists.
   line3 = geo.line('5 8 9', '1 6 3')
   # dict of components can also be used.
-  
+
   ```
+
 2. Point-direction form :
-- one point on the and direction vector to define a line : 
+
+- one point on the line, and the direction vector can be used to define a line :
   ```py
   line1 =  geo.line(p = (1,5,3), d= (5,2,8))
   # instead of thuples, list, or string 'x y z' or vectogebra's vector can also be used.
   ```
- 
-#### Attributes : 
+
+#### Attributes :
+
 1. for direction : `d` or `dir` or `direction`
-2. for point : `p` or `pt` or `point`  
- 
-#### class line have many useful functions defined. check them in the source code. they will be listed here later. 
+2. for point : `p` or `pt` or `point`
 
-### plane : 
-#### Methods of defining a plane 
+#### class line have many useful functions defined. check them in the source code. they will be listed here later.
+
+### plane :
+
+#### Methods of defining a plane
+
 1. by a point and a normal vector :
- ```py
- plane(point=(x,y,z),normal=(a,b,c))
- ```    
 
- - vector object or list of componens can also be used instead of tuples.
- - instead of `point`, `p` or `pt` can also be used.
- - instead of `normal`, `n` or `norm` can also be used.
+```py
+plane(point=(x,y,z),normal=(a,b,c))
+```
+
+- vector object or list of componens can also be used instead of tuples.
+- instead of `point`, `p` or `pt` can also be used.
+- instead of `normal`, `n` or `norm` can also be used.
 
 2. by three points :
 
 ```py
 plane((x1,y1,z1),(x2,y2,z2),(x3,y3,z3))
-``` 
+```
+
 vector `vectogebra.vector(x,y,z)` object or lists of components `[x,y,z]` can also be used instead of tuples.
 
 #### Attributes :
 
 - position vector of the point on the plane : `p` or `pt` or `point`
 - normal vector of the plane : `n` or `normal`
-
 
 ---
 

@@ -10,7 +10,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="vectogebra",
-    version="0.0.7",
+    version="0.0.8",
     author="Mohammad Maasir",
     license="MIT",
     author_email="maasir554@gmail.com",
