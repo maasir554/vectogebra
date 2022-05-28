@@ -164,8 +164,8 @@ defined the following functions :-
 
 ### Bug fixes in `plane` and `line` constructors :
 
-(in geometry.py module)
+(in _geometry.py_ module)
 
-- bug encountered when construction a `line` object with two point form.
+- bug encountered when construction a `line` object with **two point** form.
 - samilar bug experienced with `plane` object.
-- reason : variable referenced before assignment.
+- **reason** : variable referenced before assignment.
