@@ -159,3 +159,13 @@ defined the following functions :-
 
 - `proportional(a,b)` function defined to check proportionality of two vectors.
 - bug fixes
+
+## [0.0.9]
+
+### Bug fixes in `plane` and `line` constructors :
+
+(in geometry.py module)
+
+- bug encountered when construction a `line` object with two point form.
+- samilar bug experienced with `plane` object.
+- reason : variable referenced before assignment.
