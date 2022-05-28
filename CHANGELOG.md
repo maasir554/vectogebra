@@ -76,7 +76,13 @@ defined the following functions :-
 
 ### 2. changes in geometry.py mudule:
 
-- `coplanar()` function defined. this function returns `True` if the given points are coplanar. else returns `False`. - _23 May, 2022_
+- `coplanar(*args)` function defined. this function returns `True` if the given points are coplanar. else returns `False`. - _23 May, 2022_
+
+  [*24 May 2022*]
+
+- `area_polygon(*args)` and `area_line(a,b)` functions defined.
+
+- `centroid(*args)` function defined which returns the centroid of the polygon.
 
 - Class `line` defined. this class represents a line in 3-dimensional space. its methods include :-
 
@@ -101,6 +107,7 @@ defined the following functions :-
     ```
   - equality of line also defined : if two lines have same direction and one point in common, they are equal.
   - `line.__eq__(other)` : returns `True` if the given line is equal to the current line. else returns `False`.
+
     ```python
      >>>import vectogebra
      >>>line1 = vectgebra.geometry.line(p=vectogebra.vector(0,0,0),d=vectogebra.vector(1,1,1))
@@ -108,6 +115,18 @@ defined the following functions :-
      >>>line1 == line2
      >>>True
     ```
+
+    [*27 May, 2022*]
+
+  - defination of line can be done using tuples or strings also
+
+    ```py
+    import vectogebra.geometry as geo
+    line1 = geo.line(p=(0,0,0),d=(1,1,1))
+    # OR :
+    line2 = geo.line(p='0 0 0',d='1 1 1')
+    ```
+
   - Now line can also be constructed using `tuple` or `list` instead of `vector` :
     ```py
     line1 = vectogebra.geometry.line(p=(1,2,4),d=(15,12,33))
@@ -115,3 +134,28 @@ defined the following functions :-
     line2 = vectogebra.geometry.line((12,46,67),(12,98,65))
     # similarly, tuples can also be used.
     ```
+
+- Class `plane` defined : Represents a plane in 3D space.
+
+  [27 May, 2022]
+
+  - different methods of defining the plane.
+  - equality of planes.
+  - intersection of plane with a line (result is a point.)
+  - intersection of plane with a plane (result is a line)
+  - function to check if a plane includes a given point or not.
+  - function to check if a plane is parallel to a given plane or line.
+  - distnce between a plane and a point or line or other plane.
+  - now arguments need not be vectors, tuples/ lists / strings can also be used.
+
+  ```py
+  import vectogebra.geometry as geo
+  plane1 = geo.plane(p=(0,0,0),n=(1,1,1))
+  # OR
+  plane2 = geo.plane(p='0 0 0',n='1 1 1')
+  ```
+
+### 3. changes in utilities.py mudule:
+
+- `proportional(a,b)` function defined to check proportionality of two vectors.
+- bug fixes
