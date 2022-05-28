@@ -102,6 +102,16 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(line1,line4)
         self.assertTrue(line2==line3==line1)
 
-
+    def test_class_plane(self):
+        plane1 = geo.plane(n='2 1 -1', p = '1 2 1')
+        plane2 = geo.plane(n='1 -1 1', p = '3 1 1')
+        line00 = plane1.intersection(plane2)
+        resultLine00 = geo.line(p = '2 -1 0' , d = '0 -3 -3')
+        self.assertEqual(resultLine00,line00)
+        line01 = geo.line(p = '3 4 5' , d = '1 2 2')
+        plane3 = geo.plane(n='1 1 1', p = '1 1 15')
+        self.assertEqual(plane3.intersection(line01),vect('4 6 7'))
+        # self.assertEqual(plane3.intersection(line01),line01.intersection(plane3))
+        
 if __name__ == '__main__':
     unittest.main()
