@@ -640,7 +640,7 @@ class plane(object) :
     def contains(self,arg:vect or tuple or list or line) :
         return self.includes(arg)
 
-    def distance(self, other : vect | line | tuple | list | dict | str ) -> int | float :
+    def distance(self, other : vect or line or tuple or list or dict or str ) -> int or float :
         """
             Function to find the distance between a plane and a point or a parallel line.
 
@@ -765,4 +765,34 @@ class plane(object) :
         #---
         else :
             return None
+
+    def parallel(self,other : line or any ) -> bool :
+        """
+            Function to check if the plane is parallel to a line or othe plane.
+
+            ---
+
+            argument : can be any of the following : 
+            - a plane in 3D space.(plane object)
+            - a line in 3D space.(line object)
+
+            ---
+
+            Returns : True or False depending on the condition.
+
+            """
+        if type(other) == plane :
+            n1 = self.n
+            n2 = other.n
+            #---
+            return abs(n1 ^ n2) ==  0
+        
+        elif type(other) == line :
+            n = self.normal
+            #---
+            b = other.direction
+            #---
+            return n*b == 0
+        else :
+            raise TypeError("vectogebra -> geometry.py -> plane -> parallel : argument must be a line or a plane.")
     
