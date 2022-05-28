@@ -190,16 +190,15 @@ class line:
         
         # NEW : now line object can be constructed using list or tuples also.
 
-        if type(p1) == type(p2) == vect :
+        if type(p1) == vect :
             a = p1
-            b = p2
-        elif type(p1) == type(p2) == tuple or type(p1) == type(p2) == list :
-            a = vect(p1[0],p1[1],p1[2])
-            b = vect(p2[0],p2[1],p2[2])
-        elif p1 == p2 == None :
-            a = None
-            b = None
+        else :
+            a = vect(p1)
         # ---
+        if type(p2) == vect :
+            b = p2
+        else :
+            b = vect(p2)
         
         # Point-direction form :
         
@@ -298,15 +297,22 @@ class line:
         Returns : True if the lines are parallel, False otherwise.
 
         """
-        if (self.direction^other.direction).magnitude == 0 :
-            return True
+        if type(other) ==type(self):    
+            if abs(self.direction^other.direction) == 0 :
+                return True
+            else :
+                return False
+        elif type(other) == plane :
+            return (self.direction)*(other.normal) == 0 
         else :
-            return False
+            raise Exception("vectogebra.geometry.line.parallel() only accepts line or plane as arguments.")
+
     
     #function to find  shorest distance between two skew lines, parallel lines, or between a line and a point. 
     def distance(self,other) :
         """
-        Function to find shortest distance between two lines(skew or parallel), or between a line and a point.
+        Function to find shortest distance between two lines(skew or parallel), or between a line and a point,
+        or between a line and a plane.
 
         ---
 
@@ -364,7 +370,8 @@ class line:
     # function to check if two lines intersect or not :
     def intersects(self,other) :
         """
-        Function to check if two lines intersect or not. OR a line and a point intersects or not.
+        Function to check if two lines intersect or not. OR a line and a point intersects or not,
+        OR a line and a plane intersects or not.
 
         ---
 
@@ -383,57 +390,68 @@ class line:
 
     def intersection(self,other) :
         """
-            Function to find the position vector of the intersection point (if exists), of two lines.
+            Function to find the position vector of the intersection point (if exists), of two lines,
+            or between a line and a plane.
 
             ---
 
-            The argument should also be a line object.
+            The argument should also be a line object or a plane object.
         """
-        # extracting vectors from the lines :
-        # ---
-        P1 = self.point
-        D1 = self.direction
-        # ---
-        P2 = other.point
-        D2 = other.direction
-        # ---
-        # --- --- --- 
+        if type(other) == type(self) :    
+            # extracting vectors from the lines :
+            # ---
+            P1 = self.point
+            D1 = self.direction
+            # ---
+            P2 = other.point
+            D2 = other.direction
+            # ---
+            # --- --- --- 
 
-        # extracting the components of vectors defined above.
-        # ---
-        p = P1.x
-        q = P1.y
-        r = P1.z
-        # ---
-        s = D1.x
-        t = D1.y
-        u = D1.z
-        # ---
-        # ---
-        a = P2.x
-        b = P2.y
-        c = P2.z    
-        # ---
-        f = D2.x
-        g = D2.y
-        h = D2.z
-        # ---
-        # --- --- ---
-        if self.intersects(other) : 
-            if (f*t) != (s*g) :
-                phi = ((t*(p-a))-(s*(q-b)))/((f*t)-(s*g))
-            elif (u*f) != (s*h) :
-                phi = ((u*(p-a))-(s*(r-c)))/((u*f)-(s*h))
-            elif (u*g) != (t*h) :
-                phi = ((u*(q-b))-(t*(r-c)))/((u*g)-(t*h))
-            else :
-                raise ValueError("Error in function line.intersects().")
+            # extracting the components of vectors defined above.
+            # ---
+            p = P1.x
+            q = P1.y
+            r = P1.z
+            # ---
+            s = D1.x
+            t = D1.y
+            u = D1.z
+            # ---
+            # ---
+            a = P2.x
+            b = P2.y
+            c = P2.z    
+            # ---
+            f = D2.x
+            g = D2.y
+            h = D2.z
+            # ---
+            # --- --- ---
+            if self.intersects(other) : 
+                if (f*t) != (s*g) :
+                    phi = ((t*(p-a))-(s*(q-b)))/((f*t)-(s*g))
+                elif (u*f) != (s*h) :
+                    phi = ((u*(p-a))-(s*(r-c)))/((u*f)-(s*h))
+                elif (u*g) != (t*h) :
+                    phi = ((u*(q-b))-(t*(r-c)))/((u*g)-(t*h))
+                else :
+                    raise ValueError("Error in function line.intersects().")
 
-            INTERSECTION = P2 + (phi*D2)
-            return INTERSECTION
+                INTERSECTION = P2 + (phi*D2)
+                return INTERSECTION
 
-        else:
-            return None
+            else:
+                return None
+        #---
+
+        elif type(other) == plane :
+            return other.intersection(self) #alredy definde in plane class.
+
+        else : 
+            raise Exception("vectogebra.geometry.line.intersection() only accepts line or plane as arguments.")
+        
+
 
     # dunder methods
     
@@ -536,21 +554,32 @@ class plane(object) :
         #---
 
         if p1 != None and p2 != None and p3 != None :
+            
             if type(p1) == vect :
                 v1 = p1
-            elif type(p1) == list or type(p1) == tuple :
+            elif type(p1) == list or type(p1) == tuple or type(p1) == str or type(p1) == dict:
                 v1 = vect(p1)
+            else :
+                raise TypeError("Error in constructor of plane")
+            #---    
             if type(p2) == vect:
                 v2 = p2
-            elif type(p2) == list or type(p2) == tuple :
+            elif type(p2) == list or type(p2) == tuple or type(p2) == str or type(p2) == dict:
                 v2 = vect(p2)
+            else :
+                raise TypeError("Error in constructor of plane")
+            #---
             if type(p3) == vect:
                 v3 = p3
-            elif type(p3) == list or type(p3) == tuple :
+            elif type(p3) == list or type(p3) == tuple or type(p3) == str or type(p3) == dict:
                 v3 = vect(p3)
-            
+            else :
+                raise TypeError("Error in constructor of plane")
+            #---
             self.point = v1
-            self.normal = (v2-v1)^(v3-v1)
+            self.normal = (v2-v1)^(v3-v1) 
+        else : 
+            pass
 
                 
 
@@ -602,7 +631,7 @@ class plane(object) :
     #------------+----------------------+--------------# 
 
 
-    def includes(self,arg:vect or tuple or list or line or str):
+    def includes(self,arg:vect or tuple or list or line or str or dict):
         """
         Function to check :
         1. if a point is on the plane, or
@@ -648,7 +677,7 @@ class plane(object) :
             return False
     
     
-    def contains(self,arg:vect or tuple or list or line) :
+    def contains(self,arg:vect or tuple or list or line or str or dict) :
         return self.includes(arg)
 
     def distance(self, other : vect or line or tuple or list or dict or str ) -> int or float :
@@ -754,28 +783,31 @@ class plane(object) :
 
                 # finally the line is :
                 return line(point = c,direction = b)
-
-            elif type(other) == line :
-
-                p = self.point
-                n = self.normal
-
-                #---
-                a = other.point
-                b = other.direction
-                #---
-                
-                lmbd = ((p-a)*n)/(b*n)
-                #---
-                c = a + lmbd*b
-
-                return c
-                
             else :
                 return None
+        
+        #---                                        major bug fixed :-
+
+        elif type(other) == line :
+
+            p = self.point
+            n = self.normal
+
+            #---
+            a = other.point
+            b = other.direction
+            #---
+            if b*n != 0 :
+                lmbd = ((p-a)*n)/(b*n)
+                c = a + lmbd*b
+                return c
+            else :
+                return None
+
         #---
+
         else :
-            return None
+            raise TypeError("vectogebra.geometry.plane.intersection : argument must be a plane or a line.")
 
     def parallel(self,other : line or any ) -> bool :
         """
