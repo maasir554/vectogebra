@@ -177,16 +177,21 @@ def magnitude(v):
     else:
         raise TypeError("Argument must be a vector or a number")
 
-def proportional(a:v or tuple or list,b:v or tuple or list)->bool:
+def proportional(a:v or tuple or list or str or dict,b:v or tuple or list or dict or str)->bool:
     if type(a) == v:
         v1 = a
-    else :
+    
+    elif type(a) == tuple or type(a) == list or type(a) == str or type(a) == dict:
         v1 = v(a)
+    else :
+        raise TypeError("Problem in function proportional.")
 
     if type(b) == v:
         v2 = b
-    else:
+    elif type(b) == dict or type(b) == list or type(b) == tuple or type(b) == str:
         v2 = v(b)
+    else :
+        raise TypeError("Problem in function proportional.")
 
     return abs(v1 ^ v2) == 0
 
