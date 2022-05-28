@@ -228,12 +228,12 @@ class line:
         if p != None and d != None :
             if type(p) == vect:
                 self.point = p
-            elif type(p) == list or type(p) == tuple :
+            elif type(p) == list or type(p) == tuple or type(p) == str or type(p) == dict:
                 self.point = vect(p)
             #---
             if type(d) == vect:
                 self.direction = d
-            elif type(d) == list or type(d) == tuple :
+            elif type(d) == list or type(d) == tuple or type(p) == str or type(p) == dict:
                 self.direction = vect(d)
 
 
@@ -517,7 +517,7 @@ class plane(object) :
 
         if type(p)==vect:
             self.point = p
-        elif type(p) == list or type(p) == tuple :
+        elif type(p) == list or type(p) == tuple or type(p) == str or type(p) == dict:
             self.point = vect(p)
         else :
             pass
@@ -547,7 +547,7 @@ class plane(object) :
 
         if type(n)==vect:
             self.normal = n
-        elif type(n) == list or type(n) == tuple :
+        elif type(n) == list or type(n) == tuple or type(n) == str or type(n) == dict:
             self.normal = vect(n)
         else :
             pass
@@ -692,7 +692,7 @@ class plane(object) :
             return None
 
 
-    def intersection(self,other : line | tuple | list | dict | str | any ) -> vect | line :
+    def intersection(self,other : line or tuple or list or dict or str ) -> vect or line :
         """
             Function to find the intersection point between a plane and a line or a plane.
 
@@ -717,7 +717,7 @@ class plane(object) :
             p2 = other.point
             #---
             
-            if vut.proportional(n1,n2) ==  False:
+            if n1 ^ n2 !=  0:
                 # we knoow that the direction of the line(intersection) is
                 # perpendicular to the normal vectors of both planes. Hence, we have :
                 
