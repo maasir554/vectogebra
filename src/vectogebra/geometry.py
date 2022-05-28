@@ -212,17 +212,23 @@ class line:
         #---
         if 'point' in kwargs :
             p = kwargs['point']
-        if 'p' in kwargs :
+        elif 'p' in kwargs :
             p = kwargs['p']
-        if 'pt' in kwargs :
+        elif 'pt' in kwargs :
             p = kwargs['pt']
+        else :
+            p = None
         #---
         if 'direction' in kwargs :
             d = kwargs['direction']
-        if 'd' in kwargs :
+        elif 'd' in kwargs :
             d = kwargs['d']
-        if 'dir' in kwargs :
+        elif 'dir' in kwargs :
             d = kwargs['dir']
+        elif 'dr' in kwargs :
+            d = kwargs['dr']
+        else :
+            d = None
         #---
         
         if p != None and d != None :
@@ -500,19 +506,24 @@ class plane(object) :
         # initializing the attributes with the values passed as arguments :
         if 'point' in kwargs :
             p = kwargs['point']
-        if 'p' in kwargs :
+        elif 'p' in kwargs :
             p = kwargs['p']
-        if 'pt' in kwargs :
+        elif 'pt' in kwargs :
             p = kwargs['pt']
+        else :
+            p = None
         
         #---
 
         if 'normal' in kwargs :
             n = kwargs['normal']
-        if 'n' in kwargs :
+        elif 'n' in kwargs :
             n = kwargs['n']
-        if 'norm' in kwargs :
+        elif 'norm' in kwargs :
             n = kwargs['norm']
+        else :
+            n = None
+
         #---
 
         if type(p)==vect:
