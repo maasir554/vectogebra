@@ -189,17 +189,20 @@ class line:
     def __init__(self,p1 : vect or tuple or list = None,p2 : vect or list = None,**kwargs) :
         
         # NEW : now line object can be constructed using list or tuples also.
-
-        if type(p1) == vect :
-            a = p1
-        else :
-            a = vect(p1)
-        # ---
-        if type(p2) == vect :
-            b = p2
-        else :
-            b = vect(p2)
+        a = None
+        b = None
         
+        if p1 != None and p2 != None :
+            if type(p1) == vect :
+                a = p1
+            else :
+                a = vect(p1)
+            # ---
+            if type(p2) == vect :
+                b = p2
+            else :
+                b = vect(p2)
+
         # Point-direction form :
         
         if a != None and b != None :
@@ -957,4 +960,3 @@ def PlaneEquationParser(eqn:str) :
 
     return {'normal':normal, 'point':point}
 
-print(plane('5x + 3y + 2z = 45'))
