@@ -162,6 +162,8 @@ defined the following functions :-
 
 ## [0.0.9]
 
+[28 May 2022]
+
 ### Bug fixes in `plane` and `line` constructors :
 
 (in _geometry.py_ module)
@@ -169,3 +171,11 @@ defined the following functions :-
 - bug encountered when construction a `line` object with **two point** form.
 - samilar bug experienced with `plane` object.
 - **reason** : variable referenced before assignment.
+
+## [0.0.10]
+
+[29 May 2022]
+
+- bug fixes
+- `plane` from equation
+- repr of `line` object dfined.
