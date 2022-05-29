@@ -906,27 +906,36 @@ def PlaneEquationParser(eqn:str) :
 
     for i in list_eqn :
         if 'x' in i :
-            if list_eqn[list_eqn.index(i)-1] == '+' :    
-                dict_eqn['x_coeff'] = float(i.replace('x',''))
-            elif list_eqn[list_eqn.index(i)-1] == '-' :
-                dict_eqn['x_coeff'] = -float(i.replace('x',''))
+            if len(i) != 1 :    
+                if list_eqn[list_eqn.index(i)-1] == '+' :    
+                    dict_eqn['x_coeff'] = float(i.replace('x',''))
+                elif list_eqn[list_eqn.index(i)-1] == '-' :
+                    dict_eqn['x_coeff'] = -float(i.replace('x',''))
+                else :
+                    dict_eqn['x_coeff'] = float(i.replace('x',''))
             else :
-                dict_eqn['x_coeff'] = float(i.replace('x',''))
+                dict_eqn['x_coeff'] = 1
         if 'y' in i :
-            if list_eqn[list_eqn.index(i)-1] == '+' :    
-                dict_eqn['y_coeff'] = float(i.replace('y',''))
-            elif list_eqn[list_eqn.index(i)-1] == '-' :
-                dict_eqn['y_coeff'] = -float(i.replace('y',''))
+            if len(i) != 1 :   
+                if list_eqn[list_eqn.index(i)-1] == '+' :    
+                    dict_eqn['y_coeff'] = float(i.replace('y',''))
+                elif list_eqn[list_eqn.index(i)-1] == '-' :
+                    dict_eqn['y_coeff'] = -float(i.replace('y',''))
+                else :
+                    dict_eqn['y_coeff'] = float(i.replace('y',''))
             else :
-                dict_eqn['y_coeff'] = float(i.replace('y',''))
+                dict_eqn['y_coeff'] = 1
         if 'z' in i :
-            if list_eqn[list_eqn.index(i)-1] == '+' :    
-                dict_eqn['z_coeff'] = float(i.replace('z',''))
-            elif list_eqn[list_eqn.index(i)-1] == '-' :
-                dict_eqn['z_coeff'] = -float(i.replace('z',''))
+            if len(i) != 1 :    
+                if list_eqn[list_eqn.index(i)-1] == '+' :    
+                    dict_eqn['z_coeff'] = float(i.replace('z',''))
+                elif list_eqn[list_eqn.index(i)-1] == '-' :
+                    dict_eqn['z_coeff'] = -float(i.replace('z',''))
+                else :
+                    dict_eqn['z_coeff'] = float(i.replace('z',''))
             else :
-                dict_eqn['z_coeff'] = float(i.replace('z',''))
-                
+                dict_eqn['z_coeff'] = 1
+
         if '=' in i :
             dict_eqn['constant'] = float(list_eqn[list_eqn.index(i)+1])
     
