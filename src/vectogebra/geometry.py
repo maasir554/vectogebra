@@ -256,6 +256,9 @@ class line:
     def __str__(self):
         return "line : point = " + str(self.point) + " , direction = " + str(self.direction) 
 
+    def __repr__(self):
+        return "line : point = " + str(self.point) + " , direction = " + str(self.direction) + '\n' + '[line object from vectogebra.geometry module]'
+
 
     # function to check if the line includes (or passes through) a point :
     def includes(self,r : vect) :
@@ -524,6 +527,13 @@ class plane(object) :
     ```
     plane((x1,y1,z1),(x2,y2,z2),(x3,y3,z3))
     ``` 
+    ### 3. by equation of plane :
+    ```
+        plane('ax + by + cz = d')
+        plane('ax - by - cz = -d')
+        plane('ax -by -cz = d')
+        plane('-ax + by + cz = -d')
+    ```
     - vector `vectogebra.vector(x,y,z)` object or lists of components `[x,y,z]` can also be used instead of tuples.
     ---
 
@@ -612,6 +622,12 @@ class plane(object) :
             pass
         
         #---
+
+        # plane from its equation :
+        if p1 != None and p2 == None and p3 == None and type(p1) == str :
+            self.normal = PlaneEquationParser(p1)['normal']
+            self.point = PlaneEquationParser(p1)['point']
+        
         
         # shorthands :
         self.p = self.point
@@ -858,3 +874,87 @@ class plane(object) :
         else :
             raise TypeError("vectogebra -> geometry.py -> plane -> parallel : argument must be a line or a plane.")
     
+
+# +----------------------------+
+# |    PLANE EQUATION PARSER   |
+# +----------------------------+
+def PlaneEquationParser(eqn:str) :
+
+    """
+        Function to parse the plane equation.
+
+        argument : 
+
+        the plane equation in string format.
+        The following equations are velid : 
+        - 'ax + by + cz = d'
+        - 'ax - by - cz = -d'
+        - '-ax -by -cz = d'
+        - '-ax + -by + -cz = -d
+        - 'ax - -by - -cz = d'
+        - '-ax - by - cz = -d'
+        Returns : a dict containing normal and a point on the plane.
+
+    """        
+    
+    
+    list_eqn = eqn.split(' ')
+    dict_eqn = {'x_coeff':0,'y_coeff':0,'z_coeff':0,'constant':0}
+
+    for i in list_eqn :
+        if 'x' in i :
+            if list_eqn[list_eqn.index(i)-1] == '+' :    
+                dict_eqn['x_coeff'] = float(i.replace('x',''))
+            elif list_eqn[list_eqn.index(i)-1] == '-' :
+                dict_eqn['x_coeff'] = -float(i.replace('x',''))
+            else :
+                dict_eqn['x_coeff'] = float(i.replace('x',''))
+        if 'y' in i :
+            if list_eqn[list_eqn.index(i)-1] == '+' :    
+                dict_eqn['y_coeff'] = float(i.replace('y',''))
+            elif list_eqn[list_eqn.index(i)-1] == '-' :
+                dict_eqn['y_coeff'] = -float(i.replace('y',''))
+            else :
+                dict_eqn['y_coeff'] = float(i.replace('y',''))
+        if 'z' in i :
+            if list_eqn[list_eqn.index(i)-1] == '+' :    
+                dict_eqn['z_coeff'] = float(i.replace('z',''))
+            elif list_eqn[list_eqn.index(i)-1] == '-' :
+                dict_eqn['z_coeff'] = -float(i.replace('z',''))
+            else :
+                dict_eqn['z_coeff'] = float(i.replace('z',''))
+                
+        if '=' in i :
+            dict_eqn['constant'] = float(list_eqn[list_eqn.index(i)+1])
+    
+    nx = dict_eqn['x_coeff']
+    ny = dict_eqn['y_coeff']
+    nz = dict_eqn['z_coeff']
+    d = dict_eqn['constant']
+    
+    normal = vect(nx, ny, nz)
+    # for point point :
+    if nx != 0 and ny != 0 and nz != 0 : 
+        px = 1
+        py = 1
+        pz = (d-nx-ny)/nz
+        point = vect(px,py,pz)
+    elif nx != 0 and ny != 0 and nz ==0:
+        px = 1
+        py = (d-nx)/ny 
+        pz = 0
+        point = vect(px,py,pz)
+    elif nx != 0 and ny == 0 and nz != 0:
+        px = 1
+        py = 0
+        pz = (d-nx)/nz
+        point = vect(px,py,pz)
+    elif nx == 0 and ny != 0 and nz != 0:
+        px = 0
+        py = 1
+        pz = (d-ny)/nz
+        point = vect(px,py,pz)
+
+    return {'normal':normal, 'point':point}
+
+print(plane('5x + 3y + 2z = 45'))
