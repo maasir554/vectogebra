@@ -365,6 +365,15 @@ class line:
             p = other
             return (p-a)^(b/b.magnitude)
 
+        elif type(other) == list or type(other) == tuple or type(other) == dict or type(other) == str :
+            a = self.point
+            b = self.direction
+            p = vect(other)
+            return (p-a)^(b/b.magnitude)
+
+        else :
+            raise Exception("vectogebra.geometry.line.distance() only accepts line or plane or point as arguments.")
+
 
     
     # function to check if two lines intersect or not :
@@ -375,18 +384,16 @@ class line:
 
         ---
 
-        argument : another `line` object. OR a point (`vector`)
+        argument : another `line` object, OR a point (`vector` or list or tuple or str : 'x y z'), OR a plane
 
         ---
 
-        Returns : True if the lines intersect, False otherwise.
+        Returns : True if the lines intersect with other object, False otherwise.
 
         """
         # The previous logic was wrong, as it ignored skew lines.
-        if self.distance(other) == 0 :
-            return True
-        else :
-            return False
+        return self.distance(other) == 0 
+        
 
     def intersection(self,other) :
         """
@@ -447,6 +454,18 @@ class line:
 
         elif type(other) == plane :
             return other.intersection(self) #alredy definde in plane class.
+
+        elif type(other) == vect:
+            if self.contains(other) :
+                return other
+            else :
+                return None
+        
+        elif type(other) == list or type(other) == tuple or type(other) == dict or type(other) == str :
+            if self.contains(vect(other)) :
+                return vect(other)
+            else :
+                return None
 
         else : 
             raise Exception("vectogebra.geometry.line.intersection() only accepts line or plane as arguments.")
