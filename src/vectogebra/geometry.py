@@ -283,10 +283,9 @@ class line:
         # as cross product of propotional vectors (either parallel or anti-parallel) is 0, 
         # we have :-
 
-        if (r-self.point)^self.direction == 0 :
-            return True
-        else :
-            return False
+        return abs((r-self.point)^self.direction) == 0 
+        
+        # bug fixed 
 
 
     # function to check if the given two lines are parallel
@@ -369,13 +368,13 @@ class line:
             a = self.point
             b = self.direction
             p = other
-            return (p-a)^(b/b.magnitude)
+            return abs((p-a)^(b/b.magnitude))
 
         elif type(other) == list or type(other) == tuple or type(other) == dict or type(other) == str :
             a = self.point
             b = self.direction
             p = vect(other)
-            return (p-a)^(b/b.magnitude)
+            return abs((p-a)^(b/b.magnitude))
 
         else :
             raise Exception("vectogebra.geometry.line.distance() only accepts line or plane or point as arguments.")
@@ -494,17 +493,20 @@ class line:
         Returns : True if the lines are equal, False otherwise.
 
         """
-        L1 = self
-        L2 = other
+        if type(other) == type(self) :   
+            L1 = self
+            L2 = other
 
-        a1 = self.point
-        b1 = self.direction
+            a1 = self.point
+            b1 = self.direction
 
-        a2 = other.point
-        b2 = other.direction
+            a2 = other.point
+            b2 = other.direction
 
-        if L1.includes(a2) and L2.includes(a1) and L1.parallel(L2) :
-            return True
+            if L1.includes(a2) and L2.includes(a1) and L1.parallel(L2) :
+                return True
+            else :
+                return False
         else :
             return False
 
@@ -702,15 +704,14 @@ class plane(object) :
             line0 = arg
 
         #---
-        if point !=None and abs(self.normal^(point-self.point)) == 0 :
+        if point !=None and abs(self.normal*(point-self.point)) == 0 :
             return True
         # a line is said to be contained in a plane if : 
         # 1. the direction of it is perpendicular to the normal vector of the plane.
         # 2. the line and the plane have atleast one point in common.
         elif line0 != None and  line0.direction*self.normal == 0 :
-            # the following is the condition required while solvinf equation of a line and a plane.
-            # the quantities which are crosseed must be proportional to each other. that's why the cross product is ZERO.
-            return abs((line0.point*(self.normal - self.point))^(line0.direction*(self.normal - self.point))) == 0
+            # the line should pe parallel to the plane. and its distance from the plane should be 0.
+            return self.distance(line0) == 0
         else :
             return False
     
