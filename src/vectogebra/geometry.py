@@ -762,7 +762,7 @@ class plane(object) :
             n2 = other.n
             p1 = self.p
             p2 = other.p
-            if vut.proportional(n1,n2):
+            if abs(n1^n2) == 0 :
                 return abs((p2-p1)*(n1/n1.magnitude))
             else :
                 return 0

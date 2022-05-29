@@ -103,6 +103,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(line2==line3==line1)
 
     def test_class_plane(self):
+        # intersection :
         plane1 = geo.plane(n='2 1 -1', p = '1 2 1')
         plane2 = geo.plane(n='1 -1 1', p = '3 1 1')
         line00 = plane1.intersection(plane2)
@@ -111,7 +112,27 @@ class TestStringMethods(unittest.TestCase):
         line01 = geo.line(p = '3 4 5' , d = '1 2 2')
         plane3 = geo.plane(n='1 1 1', p = '1 1 15')
         self.assertEqual(plane3.intersection(line01),vect('4 6 7'))
-        # self.assertEqual(plane3.intersection(line01),line01.intersection(plane3))
+        #equality :
+        self.assertEqual(geo.plane(n=vect(1,3,2), p = '4 5 3'),geo.plane(n='2 6 4', p = (1,1,10.5)))
+        
+        # include :
+        self.assertTrue(geo.plane(n='2 1 -1', p = '1 2 1').includes(vect(1,2,1)))
+        self.assertTrue(geo.plane(n='2 1 -1', p = '1 2 1').includes(vect(1.5,0,0)))
+        self.assertTrue(geo.plane(n='2 1 -1', p = '1 2 1').includes(geo.line((1,2,1),(1.5,0,0))))
+
+        # distance :
+        self.assertEqual(geo.plane(n='2 1 -1', p = '1 2 1').distance(vect(1,2,1)),0)
+        self.assertEqual(geo.plane(n='2 1 -1', p = '1 2 1').distance(vect(1.5,0,0)),0)
+        self.assertEqual(geo.plane(n='2 1 -1', p = '1 2 1').distance(geo.line((1,2,1),(1.5,0,0))),0)
+        self.assertEqual(geo.plane(n='0 0 1', p = [0,0,0]).distance(geo.plane(n=[0,0,157],p=[0,0,15])),15)
+
+        # equation :
+        self.assertEqual(plane3.intersection(line01),line01.intersection(plane3))
+        self.assertEqual(geo.plane('x + y + z = 10'), geo.plane('5x + 5y + 5z = 50'))
+        self.assertEqual(geo.plane('x + y + z = 10'), geo.plane(n= '1 1 1', p = '1 1 8'))
+        self.assertEqual(geo.plane('5x + 5y + 5z = 50'), geo.plane(n= '193 193 193', p = '1 1 8'))
+        self.assertEqual(geo.plane('-12x -10y + z = 10'), geo.plane(n= '-12 -10 1', p = '0 0 10'))
+    
         
 if __name__ == '__main__':
     unittest.main()
