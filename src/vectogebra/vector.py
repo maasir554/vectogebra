@@ -76,6 +76,14 @@ class vector:
                     self.i = float(lst[0])
                     self.j = float(lst[1])
                     self.k = float(lst[2])
+            elif len(lst) == 2 :
+                    self.i = float(lst[0])
+                    self.j = float(lst[1])
+                    self.k = 0
+            elif len(lst) == 1 :
+                    self.i = float(lst[0])
+                    self.j = 0
+                    self.k = 0
             else:
                 raise ValueError("Invalid input")
         elif type(i) == type(self):
