@@ -132,7 +132,19 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(geo.plane('x + y + z = 10'), geo.plane(n= '1 1 1', p = '1 1 8'))
         self.assertEqual(geo.plane('5x + 5y + 5z = 50'), geo.plane(n= '193 193 193', p = '1 1 8'))
         self.assertEqual(geo.plane('-12x -10y + z = 10'), geo.plane(n= '-12 -10 1', p = '0 0 10'))
-    
-        
+
+        # plane constructor : intersecting lines form :
+        l1 = geo.line(p=(1,3,4),d=(1,5,9))
+        l2 = geo.line(p=(1,3,4),d=(3,4,7))
+        self.assertEqual(geo.plane(l1,l2),geo.plane(normal = vect(-1, 20, -11), point = vect(1.0, 3.0, 4.0)))
+
+    #---#---#---#    
+
+    def test_class_segment(self):
+
+        s1 = geo.segment('1 2', '6 0')
+        s2 = geo.segment('3 1', '7 8')
+        self.assertEqual(s1.intersection(s2),vect(3.0930232558139537, 1.1627906976744187, 0.0))
+
 if __name__ == '__main__':
     unittest.main()
