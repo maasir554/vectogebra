@@ -78,6 +78,10 @@ class vector:
                     self.k = float(lst[2])
             else:
                 raise ValueError("Invalid input")
+        elif type(i) == type(self):
+            self.i = i.i
+            self.j = i.j
+            self.k = i.k
         elif type(i) == type(None) :
             raise ValueError("Invalid input : None can not be used to construct a vector object.")
 
