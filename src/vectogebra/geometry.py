@@ -633,6 +633,13 @@ class plane(object) :
             self.normal = PlaneEquationParser(p1)['normal']
             self.point = PlaneEquationParser(p1)['point']
         
+        # plane from two intersecting lines : 
+        elif p1 != None and p2 != None and p3 == None and  type(p1) == type(p2) == line:
+            if p1.intersects(p2) :
+                self.point = p1.intersection(p2)
+                self.normal = p1.direction^p2.direction
+            else :
+                raise Exception("plane() constructor : the two lines do not intersect.")
         
         # shorthands :
         self.p = self.point
@@ -981,6 +988,8 @@ class segment(object):
                     return None
             else :
                 return None
+        else :
+            raise TypeError("vectogebra.geometry.segment.intersection : argument must be a segment.")
 
         #---
 
