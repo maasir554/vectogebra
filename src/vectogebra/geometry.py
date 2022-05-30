@@ -771,6 +771,32 @@ class plane(object) :
             return None
 
 
+    def intersects(self,other:line or any) :
+        """
+        Function to check if two planes intersect. Or if a plane and a line intersect.
+
+        ---
+
+        argument : can be any of the following : 
+        1. a line in 3D space.(line object)
+        2. a plane in 3D space.(plane object)
+        3. (only for additional functionality) a point in 3D space.(vector or list/tuple/dict of components)
+
+        ---
+
+        Returns : True if the plane intersect with other object, False otherwise.
+
+        """
+        if type(other) == line :
+            return self.distance(other) == 0
+        elif type(other) == plane :
+            return self.distance(other) == 0
+        elif type(other) == vect or tuple or str or dict or list :
+            return self.includes(other)
+        else :
+            raise Exception('vectogebra.geometry.plane() accepts only line or plane or point as argument')
+
+
     def intersection(self,other : line or tuple or list or dict or str ) -> vect or line :
         """
             Function to find the intersection point between a plane and a line or a plane.
@@ -877,7 +903,89 @@ class plane(object) :
             return n*b == 0
         else :
             raise TypeError("vectogebra -> geometry.py -> plane -> parallel : argument must be a line or a plane.")
+
+
+class segment(object):
+    """
+    Class for Line Segment object.
+
+    defined by two end-points 
+
+    """
+    def __init__(self,arg1 : vect or tuple or list or dict or str,arg2 : vect or tuple or list or dict or str) :
+
+        self.p1 = self.point1 = vect(arg1)
+        self.p2 = self.point2 = vect(arg2)
+
+        #---
+
+        self.Xmax = self.xmax = max(self.p1.x , self.p2.x)
+        self.Xmin = self.xmin =  min(self.p1.x , self.p2.x)
+        
+        self.Ymax = self.ymax = max(self.p1.y , self.p2.y)
+        self.Ymin = self.ymin = min(self.p1.y , self.p2.y)
+
+        self.Zmax = self.zmax = max(self.p1.z , self.p2.z)
+        self.Zmin = self.zmin = min(self.p1.z , self.p2.z)
+
+        
+        #---
+
+        self.length = abs(self.p1 - self.p2)
+        self.disp = self.displacement = self.p2 - self.p1
+        self.mid_point = self.midPoint = self.MidPoint = self.midpoint = self.mp = divider(self.p1,self.p2,1,1)
     
+        ###
+
+
+    def __repr__(self) :
+        return 'segment(%s,%s)'%(self.p1,self.p2)
+
+    def __str__(self) :
+        return 'segment(%s,%s)'%(self.p1,self.p2)
+
+    def __eq__(self,other) :
+        if type(other) == segment :
+            return (self.p1 == other.p1 and self.p2 == other.p2) or (self.p1 == other.p2 and self.p2 == other.p1)
+        else :
+            return False
+
+    def __ne__(self,other) :
+        return not self.__eq__(other)
+
+    # segment intersection :
+    def intersection(self,other) :
+        if type(other) == segment :    
+            p1 = self.p1
+            p2 = self.p2
+            #---
+            q1 = other.p1
+            q2 = other.p2
+            #---
+            Xmax = max(self.xmax,other.xmax)
+            Xmin = min(self.xmin,other.xmin)
+            Ymax = max(self.ymax,other.ymax)
+            Ymin = min(self.ymin,other.ymin)
+            Zmax = max(self.zmax,other.zmax)
+            Zmin = min(self.zmin,other.zmin)
+            #---
+            line1 = line(p1,p2)
+            line2 = line(q1,q2)
+
+            INTERSECTION = line1.intersection(line2)
+            
+            if INTERSECTION != None :
+                if INTERSECTION.x >= Xmin and INTERSECTION.x <= Xmax and INTERSECTION.y >= Ymin and INTERSECTION.y <= Ymax and INTERSECTION.z >= Zmin and INTERSECTION.z <= Zmax :
+                    return INTERSECTION
+                else :
+                    return None
+            else :
+                return None
+
+        #---
+
+
+
 
 # +----------------------------+
 # |    PLANE EQUATION PARSER   |
