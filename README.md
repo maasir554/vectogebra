@@ -2,7 +2,7 @@
 
 ### Python module for vector algebra
 
-easy to use vector algebra library for python, that lets ypu work with vectors in an efficient way.
+easy to use vector algebra library for python, that lets you work with vectors in an efficient way.
 apart from core vector object, many other vector operations are supported.
 these can be imported from vectogebra.utilities.
 
